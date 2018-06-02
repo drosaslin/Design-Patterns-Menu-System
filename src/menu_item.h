@@ -11,6 +11,14 @@ public:
   {
   }
 
+  virtual std::string getDescription() {
+    return "dummy";
+  }
+
+  virtual std::string getPrice() {
+    return "dummy";
+  }
+
   void addIngredient(std::string newIngredient) {
     _ingredients.push_back(newIngredient);
   }
@@ -26,7 +34,7 @@ public:
   void removeIngredient(std::string ingredient) {
     int size = _ingredients.size();
     for (int n = 0; n < size; n++){
-      if (_ingredients[n] == ingredient) 
+      if (_ingredients[n] == ingredient)
         _ingredients.erase(_ingredients.begin() + n);
     }
   }

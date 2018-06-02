@@ -10,20 +10,43 @@ public:
   }
 
   virtual void addIngredient(std::string newIngredient) {
-    //throw exception
+    throw std::invalid_argument("Invalid Operation");
+  }
+
+  virtual void deleteItem(std::string item) {
+    throw std::invalid_argument("Invalid Operation");
+  }
+
+  virtual void addItem(BaseMenu* item) {
+    throw std::invalid_argument("Invalid Operation");
+  }
+
+  virtual void removeIngredient(std::string ingredient) {
+    throw std::invalid_argument("Invalid Operation");
   }
 
   virtual bool hasIngredient(std::string ingredient) {
-    //throw exception
+    throw std::invalid_argument("Invalid Operation");
+  }
+
+  virtual BaseMenu* getItem(std::string name) {
+    throw std::invalid_argument("Invalid Operation");
+    return nullptr;
+  }
+
+  virtual bool isVegetarian(BaseMenu* item) {
+    throw std::invalid_argument("Invalid Operation");
+    return false;
   }
 
   virtual std::string getName() {
     return _name;
   }
 
-  virtual void removeIngredient(std::string ingredient) {
-    //throw exception
-  }
+  virtual std::string getDescription() = 0;
+
+  virtual std::string getPrice() = 0;
+
 
 private:
   std::string _name;
