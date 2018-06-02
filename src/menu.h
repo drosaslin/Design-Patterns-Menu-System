@@ -2,10 +2,39 @@
 #define MENU_H
 #include <string>
 #include <vector>
+#include "base_menu.h"
 using namespace std;
+
 class Menu:public NaseMenu
 {
 public:
+  class MenuIterator:public Iterator<BaseMenu *>
+  {
+  public:
+    MenuIterator(Menu *m)
+    {
+      _menu=m;
+    }
+    void first()
+    {
+      _current=_menu->_vMenu.begin();
+    }
+    void next()
+    {
+      ++_current;
+    }
+    bool isDone()const
+    {
+      return (_current == _menu->_vMenu.end());
+    }
+    BaseMenu *currentItem()
+    {
+      return *_current;
+    }
+  private:
+    Menu *_menu;
+    vector<BaseMenu *>::iterator _current;
+  }
   Menu(string description,double price):_description(description),_price(price)
   {
   }
@@ -25,17 +54,39 @@ public:
   {
     _vMenu.push_back(item);
   }
-  BaseMenu* deleteItem(str::string item)
+  void deleteItem(string name)
   {
-
+    for(int i=0;i<_vMenu.size();i++)
+    {
+      if(_vMenu[i]->name()==name)
+      {
+        _vMenu.erase(_vMenu.begin()+i);
+        break;
+      }
+    }
   }
   BaseMenu* getItem(string name)
   {
-
+    for(int i=0;i<_vMenu.size();i++)
+    {
+      if(_vMenu[i]->name()==name)
+      {
+        return _vMenu[i];
+      }
+    }
+    throw std::invalid_argument("Not Found");
+    return nullptr;
   }
   bool isVegetarian(BaseMenu* item)
   {
-
+    for(int i=0;i<_vMenu.size();i++)
+    {
+      if(!_vMenu[i]->getVegetarian())
+      {
+        return false;
+      }
+    }
+    return true;
   }
   string getName()
   {
@@ -54,4 +105,5 @@ private:
   double _price;
   bool _isVegetarian;
   vector<BaseMenu *> _vMenu;
+}
 #endif
