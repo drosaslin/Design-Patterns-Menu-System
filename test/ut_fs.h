@@ -24,4 +24,14 @@ TEST(MenuSystem, RemoveIngredients) {
   ASSERT_FALSE(hamburger.hasIngredient("Bread"));
 }
 
+TEST(MenuSystem, GetItemIngredients){
+  MenuItem salad("Salad", 150, "Delicious salad", true);
+  salad.addIngredient("Lettuce");
+  salad.addIngredient("Tomato");
+  salad.addIngredient("Vinegar");
+  ASSERT_EQ("Lettuce Tomato Vinegar ", salad.getIngredients());
+  ASSERT_EQ(150, salad.getPrice());
+  ASSERT_TRUE(salad.isVegetarian());
+}
+
 #endif
