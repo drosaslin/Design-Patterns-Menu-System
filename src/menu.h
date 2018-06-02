@@ -38,72 +38,56 @@ public:
   Menu(string description,double price):_description(description),_price(price)
   {
   }
-  void addIngredient(std::stirng newIngredient)
+  Iterator<BaseMenu *>*createIterator()
   {
-    throw std::invalid_argument("Invalid Operation");
-  }
-  void removeIngredient(std::string ingredient)
-  {
-    throw std::invalid_argument("Invalid Operation");
-  }
-  bool hasIngredient(stirng ingredient)
-  {
-    throw std::invalid_argument("Invalid Operation");
+    return new MenuIterator(this);
   }
   void addItem(BaseMenu* item)
   {
     _vMenu.push_back(item);
   }
-  void deleteItem(string name)
+  void delItem(string name)
   {
-    for(int i=0;i<_vMenu.size();i++)
+    Iterator<BaseMenu *> *it = createIterator();
+    for (it->first();!it->isDone();it->next())
     {
-      if(_vMenu[i]->name()==name)
+      if(it->currentItem()->getName()==name)
       {
-        _vMenu.erase(_vMenu.begin()+i);
+        _vMenu.erase(*it);
         break;
       }
     }
   }
   BaseMenu* getItem(string name)
   {
-    for(int i=0;i<_vMenu.size();i++)
-    {
-      if(_vMenu[i]->name()==name)
-      {
-        return _vMenu[i];
-      }
+    Iterator<BaseMenu *> *it = createIterator();
+    for (it->first();!it->isDone();it->next())
+      if(it->currentItem()->getName()==name)return it;
     }
     throw std::invalid_argument("Not Found");
     return nullptr;
   }
-  bool isVegetarian(BaseMenu* item)
+  bool isVegetarian()
   {
-    for(int i=0;i<_vMenu.size();i++)
-    {
-      if(!_vMenu[i]->getVegetarian())
-      {
-        return false;
-      }
-    }
+    Iterator<BaseMenu *> *it = createIterator();
+    for (it->first();!it->isDone();it->next())
+      if(!it->currentItem()->isVegetarian())return false;
     return true;
   }
-  string getName()
+  bool isVegetarian(BaseMenu *m)
   {
-    return _name;
+    return m->isVegetarian();
   }
-  string getDescription()
+  void setPrice()
   {
-    return _description;
+    _totalPrice*=0.8;
   }
-  double getPrice()
+  double getTotalPrice()
   {
-    return _price;
+    return _totalPrice;
   }
 private:
-  string _name,_description;
-  double _price;
-  bool _isVegetarian;
+  double _totalPrice;
   vector<BaseMenu *> _vMenu;
 }
 #endif

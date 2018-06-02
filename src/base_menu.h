@@ -10,7 +10,7 @@ public:
   {
   }
 
-  bool isVegetarian() {
+  virtual bool isVegetarian() {
     return _isVegetarian;
   }
 
