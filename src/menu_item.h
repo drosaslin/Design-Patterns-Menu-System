@@ -27,7 +27,7 @@ public:
     return false;
   }
 
-  void addDescription(std::string newDescription){
+  void setDescription(std::string newDescription){
     _description = newDescription;
   }
 
@@ -55,6 +55,10 @@ public:
 
   double getPrice(){
     return _price;
+  }
+
+  void setPrice(double newPrice){
+    _price = newPrice;
   }
 
 private:
