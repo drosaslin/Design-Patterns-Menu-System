@@ -22,6 +22,10 @@ public:
     return _description;
   }
 
+  void setDescription(std::string newDescription) {
+    _description = newDescription;
+  }
+
   virtual double getPrice() = 0;
 
   virtual void setPrice() {}
