@@ -45,7 +45,7 @@ public:
 
   virtual std::string getDescription() = 0;
 
-  virtual std::string getPrice() = 0;
+  virtual double getPrice() = 0;
 
 
 private:
