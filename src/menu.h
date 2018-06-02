@@ -46,7 +46,7 @@ public:
   {
     throw std::invalid_argument("Invalid Operation");
   }
-  bool hasIngredient(stirng ingredient)
+  bool hasIngredient(std::string ingredient)
   {
     throw std::invalid_argument("Invalid Operation");
   }
@@ -54,7 +54,7 @@ public:
   {
     _vMenu.push_back(item);
   }
-  void deleteItem(string name)
+  void deleteItem(std::string name)
   {
     for(int i=0;i<_vMenu.size();i++)
     {
@@ -65,7 +65,7 @@ public:
       }
     }
   }
-  BaseMenu* getItem(string name)
+  BaseMenu* getItem(std::string name)
   {
     for(int i=0;i<_vMenu.size();i++)
     {

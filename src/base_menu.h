@@ -10,23 +10,36 @@ public:
   {
   }
 
-  bool isVegetarian() {
+  std::string getName() {
+    return _name;
+  }
+
+  // void setIsVegatarian(bool isVegetarian) {
+  //     _isVegetarian = isVegetarian;
+  // }
+
+  std::string getDescription() {
+    return _description;
+  }
+
+  virtual double getPrice() = 0;
+
+  virtual void setPrice() {}
+
+  virtual bool isVegetarian() {
     return _isVegetarian;
   }
 
-  void setIsVegatarian(bool isVegetarian) {
-      _isVegetarian = isVegetarian;
-  }
-
-  std::string getName() {
-    return _name;
+  virtual bool isVegetarian(BaseMenu* item) {
+    throw std::invalid_argument("Invalid Operation");
+    return false;
   }
 
   virtual void addIngredient(std::string newIngredient) {
     throw std::invalid_argument("Invalid Operation");
   }
 
-  virtual void deleteItem(std::string item) {
+  virtual void delItem(std::string item) {
     throw std::invalid_argument("Invalid Operation");
   }
 
@@ -48,20 +61,11 @@ public:
   }
 
   virtual Iterator<BaseMenu*>* createIterator() {
-   return new NullIterator<BaseMenu*>;
+    return new NullIterator<BaseMenu*>;
   }
-
-  virtual bool isVegetarian(BaseMenu* item) {
-    throw std::invalid_argument("Invalid Operation");
-    return false;
-  }
-
-  virtual std::string getDescription() = 0;
-
-  virtual double getPrice() = 0;
 
 private:
-  std::string _name;
+  std::string _name, _description;
   bool _isVegetarian;
 };
 

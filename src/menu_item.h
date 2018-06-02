@@ -11,8 +11,8 @@ public:
       :BaseMenu(newName)
   {
       _description = description;
-      _isVegetarian = isVegetarian;
       _price = price;
+      setIsVegatarian(isVegetarian);
   }
 
   void addIngredient(std::string newIngredient) {
@@ -60,7 +60,7 @@ public:
 private:
   std::vector<std::string> _ingredients;
   std::string _description;
-  double _fat, _carbs, _protein, _sugar;
+  double _fat, _carbs, _protein, _sugar, _sodium;
   double _price;
 };
 
