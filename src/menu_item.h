@@ -7,7 +7,8 @@
 
 class MenuItem : public BaseMenu {
 public:
-  MenuItem(std::string newName, std::string description = "no description available", bool isVegetarian = false) : BaseMenu(newName)
+  MenuItem(std::string newName, std::string description = "no description available", bool isVegetarian = false)
+      :BaseMenu(newName)
   {
       _description = description;
       _isVegetarian = isVegetarian;
