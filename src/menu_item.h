@@ -7,11 +7,10 @@
 
 class MenuItem : public BaseMenu {
 public:
-  MenuItem(std::string newName, double price = 0.00 , std::string description = "no description available", bool isVegetarian = false)
+  MenuItem(std::string newName, double price = 0.00 , std::string description = "no description available")
       :BaseMenu(newName)
   {
       _description = description;
-      _isVegetarian = isVegetarian;
       _price = price;
   }
 
