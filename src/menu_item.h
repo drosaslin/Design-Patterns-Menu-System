@@ -7,12 +7,11 @@
 
 class MenuItem : public BaseMenu {
 public:
-  MenuItem(std::string newName, double price = 0.00 , std::string description = "no description available", bool isVegetarian = false)
+  MenuItem(std::string newName, double price = 0.00 , std::string description = "no description available")
       :BaseMenu(newName)
   {
       _description = description;
       _price = price;
-      setIsVegatarian(isVegetarian);
   }
 
   void addIngredient(std::string newIngredient) {
@@ -27,7 +26,7 @@ public:
     return false;
   }
 
-  void addDescription(std::string newDescription){
+  void setDescription(std::string newDescription){
     _description = newDescription;
   }
 
@@ -55,6 +54,10 @@ public:
 
   double getPrice(){
     return _price;
+  }
+
+  void setPrice(double newPrice){
+    _price = newPrice;
   }
 
 private:
