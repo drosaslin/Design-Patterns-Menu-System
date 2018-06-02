@@ -29,7 +29,7 @@ TEST(MenuSystem, GetItemIngredients){
   salad.addIngredient("Lettuce");
   salad.addIngredient("Tomato");
   salad.addIngredient("Vinegar");
-  ASSERT_EQ("Lettuce Tomato Vinegar ", salad.getIngredients());
+  ASSERT_EQ("Lettuce, Tomato, Vinegar", salad.getIngredients());
   ASSERT_EQ(150, salad.getPrice());
   ASSERT_TRUE(salad.isVegetarian());
 }

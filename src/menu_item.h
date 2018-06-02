@@ -7,7 +7,7 @@
 
 class MenuItem : public BaseMenu {
 public:
-  MenuItem(std::string newName, double price = 0.00 ,std::string description = "no description available", bool isVegetarian = false)
+  MenuItem(std::string newName, double price = 0.00 , std::string description = "no description available", bool isVegetarian = false)
       :BaseMenu(newName)
   {
       _description = description;
@@ -27,10 +27,6 @@ public:
     return false;
   }
 
-  bool isVegetarian (){
-    return _isVegetarian;
-  }
-
   void addDescription(std::string newDescription){
     _description = newDescription;
   }
@@ -41,8 +37,10 @@ public:
 
   std::string getIngredients(){
     std::string ingredients;
-    for(int n = 0; n < _ingredients.size(); n++){
-      ingredients +=  _ingredients[n] + " ";
+    int size = _ingredients.size();
+    for(int n = 0; n < size; n++){
+      ingredients +=  _ingredients[n];
+      if(n != size - 1) ingredients += ", ";
     }
     return ingredients;
   }
@@ -62,8 +60,8 @@ public:
 private:
   std::vector<std::string> _ingredients;
   std::string _description;
+  double _fat, _carbs, _protein, _sugar;
   double _price;
-  bool _isVegetarian;
 };
 
 #endif

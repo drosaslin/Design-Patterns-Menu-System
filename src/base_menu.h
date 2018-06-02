@@ -1,12 +1,25 @@
 #ifndef BASE_MENU_H
 #define BASE_MENU_H
 
-#include<string>
+#include "iterator.h"
+#include <string>
 
 class BaseMenu {
 public:
   BaseMenu(std::string newName) : _name(newName)
   {
+  }
+
+  bool isVegetarian() {
+    return _isVegetarian;
+  }
+
+  void setIsVegatarian(bool isVegetarian) {
+      _isVegetarian = isVegetarian;
+  }
+
+  std::string getName() {
+    return _name;
   }
 
   virtual void addIngredient(std::string newIngredient) {
@@ -34,22 +47,22 @@ public:
     return nullptr;
   }
 
+  virtual Iterator<BaseMenu*>* createIterator() {
+   return new NullIterator<BaseMenu*>;
+  }
+
   virtual bool isVegetarian(BaseMenu* item) {
     throw std::invalid_argument("Invalid Operation");
     return false;
-  }
-
-  virtual std::string getName() {
-    return _name;
   }
 
   virtual std::string getDescription() = 0;
 
   virtual double getPrice() = 0;
 
-
 private:
   std::string _name;
+  bool _isVegetarian;
 };
 
 #endif
