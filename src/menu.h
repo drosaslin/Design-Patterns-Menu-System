@@ -2,10 +2,39 @@
 #define MENU_H
 #include <string>
 #include <vector>
+#include "base_menu.h"
 using namespace std;
+
 class Menu:public NaseMenu
 {
 public:
+  class MenuIterator:public Iterator<BaseMenu *>
+  {
+  public:
+    MenuIterator(Menu *m)
+    {
+      _menu=m;
+    }
+    void first()
+    {
+      _current=_menu->_vMenu.begin();
+    }
+    void next()
+    {
+      ++_current;
+    }
+    bool isDone()const
+    {
+      return (_current == _menu->_vMenu.end());
+    }
+    BaseMenu *currentItem()
+    {
+      return *_current;
+    }
+  private:
+    Menu *_menu;
+    vector<BaseMenu *>::iterator _current;
+  }
   Menu(string description,double price):_description(description),_price(price)
   {
   }
