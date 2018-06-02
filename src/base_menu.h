@@ -28,10 +28,13 @@ public:
 
   virtual double getPrice() = 0;
 
+  virtual bool isVegetarian() = 0;
+
   virtual void setPrice() {}
 
-  virtual bool isVegetarian() {
-    return _isVegetarian;
+  virtual std::string getIngredients() {
+    throw std::invalid_argument("Invalid Operation");
+    return "";
   }
 
   virtual bool isVegetarian(BaseMenu* item) {
