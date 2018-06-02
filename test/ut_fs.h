@@ -25,7 +25,7 @@ TEST(MenuSystem, RemoveIngredients) {
 }
 
 TEST(MenuSystem, GetItemIngredients){
-  MenuItem salad("Salad", 150, "Delicious salad", true);
+  MenuItem salad("Salad", 150);
   salad.addIngredient("Lettuce");
   salad.addIngredient("Tomato");
   salad.addIngredient("Vinegar");

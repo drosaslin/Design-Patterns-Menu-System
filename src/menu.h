@@ -58,7 +58,7 @@ public:
       }
     }
   }
-  BaseMenu* getItem(string name)
+  BaseMenu* getItem(std::string name)
   {
     Iterator<BaseMenu *> *it = createIterator();
     for (it->first();!it->isDone();it->next())
