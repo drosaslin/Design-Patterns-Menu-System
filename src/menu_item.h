@@ -62,7 +62,7 @@ public:
 
 private:
   std::vector<std::string> _ingredients;
-  double _fat, _carbs, _protein, _sugar, _sodium;
+  double _fat, _carbs, _protein, _sugar, _sodium, _calories;
   double _price;
   bool _isVegetarian;
 };
