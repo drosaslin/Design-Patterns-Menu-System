@@ -38,10 +38,12 @@ public:
     return _description;
   }
 
-  void getIngredients(){
+  std::string getIngredients(){
+    std::string ingredients;
     for(int n = 0; n < _ingredients.size(); n++){
-      std::cout << _ingredients[n] << std::endl;
+      ingredients +=  _ingredients[n] + " ";
     }
+    return ingredients;
   }
 
   void removeIngredient(std::string ingredient) {
