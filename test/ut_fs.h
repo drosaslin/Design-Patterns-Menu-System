@@ -9,14 +9,14 @@ class MenuSystemTest : public ::testing::Test{
   protected:
     BaseMenu* hamburger;
     BaseMenu* pizza;
-    BaseMenu* spaguetti;
+    BaseMenu* spaghetti;
     BaseMenu* gyro;
     BaseMenu* salad;
 
     virtual void SetUp(){
       hamburger = new MenuItem("Hamburger", 5.00, false);
       pizza = new MenuItem("Pizza", 4.50, false);
-      spaguetti = new MenuItem("Spaguetti", 8.75, false);
+      spaghetti = new MenuItem("Spaghetti", 8.75, false);
       gyro = new MenuItem("Gyro", 5.00, false);
       salad = new MenuItem("Salad", 150, true);
 
