@@ -44,7 +44,10 @@ TEST_F(MenuIteratorTest, GetName) {
 }
 
 TEST_F(MenuIteratorTest, AddItemToMenu) {
-  ASSERT_EQ("Lunch Menu", lunchMenu->getName());
+  Iterator<BaseMenu*>* it = lunchMenu->createIterator();
+  ASSERT_EQ(nullptr, lunchMenu->getItem("Pizza"));
+  lunchMenu->addItem(pizza);
+  ASSERT_EQ(pizza, lunchMenu->getItem("Pizza"));
 }
 
 #endif
