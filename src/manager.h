@@ -18,5 +18,5 @@ public:
   void DelItem();
 private:
   string _name,_number;
-}
+};
 #endif

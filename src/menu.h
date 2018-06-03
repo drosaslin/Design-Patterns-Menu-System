@@ -99,10 +99,10 @@ public:
 
   void printMenu()
   {
+    Iterator<BaseMenu *> *it = createIterator();
     cout<<"\t++++++++++++++++++++++++++++++++++++++++"<<endl
         <<"\t+                                      +"<<endl
-        <<"\t+       "<<it->getName()<<"            +"<<endl;
-    Iterator<BaseMenu *> *it = createIterator();
+        <<"\t+       "<<getName()<<"            +"<<endl;
     int number = 1;
     for (it->first();!it->isDone();it->next())
     {
