@@ -11,7 +11,7 @@ all: directories $(BIN)/ut_all
 
 $(BIN)/ut_all: $(OBJ)/ut_main.o
 	$(CC) $(CFLAGS) -o $@ $(OBJ)/ut_main.o $(LIBS)
-$(OBJ)/ut_main.o: $(TEST)/ut_main.cpp $(TEST)/ut_fs.h $(SRC)/base_menu.h $(SRC)/menu_item.h $(SRC)/iterator.h $(SRC)/main.cpp
+$(OBJ)/ut_main.o: $(TEST)/ut_main.cpp $(TEST)/ut_fs.h $(TEST)/ut_menuiterator.h $(SRC)/base_menu.h $(SRC)/menu_item.h $(SRC)/iterator.h $(SRC)/main.cpp
 	$(CC) $(CFLAGS) -c $< -o $@
 
 directories:

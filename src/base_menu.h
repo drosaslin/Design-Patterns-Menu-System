@@ -6,7 +6,7 @@
 
 class BaseMenu {
 public:
-  BaseMenu(std::string newName) : _name(newName)
+  BaseMenu(std::string newName, std::string newDescr) : _name(newName), _description(newDescr)
   {
   }
 
@@ -14,9 +14,9 @@ public:
     return _name;
   }
 
-  //void setIsVegatarian(bool isVegetarian) {
-  //     _isVegetarian = isVegetarian;
-  // }
+  virtual void setIsVegetarian(bool) {
+    throw std::invalid_argument("Invalid Operation");
+  }
 
   std::string getDescription() {
     return _description;
@@ -30,7 +30,12 @@ public:
 
   virtual bool isVegetarian() = 0;
 
-  virtual void setPrice() {}
+<<<<<<< HEAD
+  virtual void setIsVegetarian(bool isVeg) {}
+
+=======
+>>>>>>> deb778127e7a65b2ce8cc41e18a29d24966c2b76
+  virtual void setPrice(double) {}
 
   virtual std::string getIngredients() {
     throw std::invalid_argument("Invalid Operation");

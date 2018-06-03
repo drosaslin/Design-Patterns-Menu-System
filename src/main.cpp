@@ -49,6 +49,7 @@ void LoginMenu()
       <<"\t+                                      +"<<endl
       <<"\t++++++++++++++++++++++++++++++++++++++++"<<endl;
 }
+<<<<<<< HEAD
 
 void InitMenu()
 {
@@ -56,3 +57,5 @@ void InitMenu()
   Menu menu2("Lunch");
   Menu menu3("Dinner");
 }
+=======
+>>>>>>> ec98fb8b7698f44ce05398dbb351d6ae1d55068c
