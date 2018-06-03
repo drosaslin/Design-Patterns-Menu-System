@@ -30,10 +30,20 @@ class MenuIteratorTest : public ::testing::Test{
       salad->addIngredient("Lettuce");
       salad->addIngredient("Tomato");
       salad->addIngredient("Vinegar");
+      lunchMenu->addItem(hamburger);
+      lunchMenu->addItem(gyro);
+      lunchMenu->addItem(salad);
+      dinnerMenu->addItem(hamburger);
+      dinnerMenu->addItem(spaguetti);
+      dinnerMenu->addItem(pizza);
     }
 };
 
 TEST_F(MenuIteratorTest, GetName) {
+  ASSERT_EQ("Lunch Menu", lunchMenu->getName());
+}
+
+TEST_F(MenuIteratorTest, AddItemToMenu) {
   ASSERT_EQ("Lunch Menu", lunchMenu->getName());
 }
 

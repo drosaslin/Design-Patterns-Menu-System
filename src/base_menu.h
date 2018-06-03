@@ -30,11 +30,6 @@ public:
 
   virtual bool isVegetarian() = 0;
 
-<<<<<<< HEAD
-  virtual void setIsVegetarian(bool isVeg) {}
-
-=======
->>>>>>> deb778127e7a65b2ce8cc41e18a29d24966c2b76
   virtual void setPrice(double) {}
 
   virtual std::string getIngredients() {
