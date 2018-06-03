@@ -34,23 +34,64 @@ Manager::Manager(string name,string number):_name(name),_number(number)
   _vAllItems.push_back(breakfastMenu);
   _vAllItems.push_back(lunchMenu);
 }
-/*void Manager::~Manager()
-{
-
-}*/
 void Manager::Operation()
 {
   cout<<"\t++++++++++++++++++++++++++++++++++++++++"<<endl
       <<"\t+                                      +"<<endl
       <<"\t+     Welcome to the ManagerSystem     +"<<endl
-      <<"\t+     1. Display All Menu              +"<<endl
-      <<"\t+     2. Display All Item              +"<<endl
+      <<"\t+     1. Display All Menus & Items     +"<<endl
+      <<"\t+     2. Display All Items             +"<<endl
       <<"\t+     3. Add New Menu                  +"<<endl
-      <<"\t+     4. Add New Item                  +"<<endl
-      <<"\t+     5. Delete Menu                   +"<<endl
+      <<"\t+     4. Delete Menu                   +"<<endl
+      <<"\t+     5. Add New Item                  +"<<endl
       <<"\t+     6. Delete Item                   +"<<endl
       <<"\t+                                      +"<<endl
       <<"\t++++++++++++++++++++++++++++++++++++++++"<<endl;
+  string command;
+  regex com("[1-6]");
+  cout<<"Please input command";
+  cin>>command;
+  while(1)
+  {
+    if (regex_match(command,com))
+    {
+      if (command=="1")
+      {
+        PrintMenu();
+      }
+      else if (command=="2")
+      {
+        PrintItem();
+      }
+      else if (command=="3")
+      {
+        AddMenu();
+      }
+      else if (command=="4")
+      {
+        DelManu();
+      }
+      else if (command=="5")
+      {
+        AddItem();
+      }
+      else if (command=="6")
+      {
+        DelItem();
+      }
+      break;
+    }
+    else
+    {
+      cout<<"Input Error. Please input 1 ~ 6:";
+      cin>>command;
+    }
+  }
+
+}
+void Manager::PrintMenuAndItem()
+{
+
 }
 void Manager::PrintMenu()
 {
