@@ -2,6 +2,7 @@
 #define UTFS_H
 #include "../src/base_menu.h"
 #include "../src/menu_item.h"
+#include "../src/menu.h"
 #include <sys/stat.h>
 #include <string>
 
@@ -12,6 +13,7 @@ class MenuSystemTest : public ::testing::Test{
     BaseMenu* spaghetti;
     BaseMenu* gyro;
     BaseMenu* salad;
+    BaseMenu* lunchMenu;
 
     virtual void SetUp(){
       hamburger = new MenuItem("Hamburger", 5.00, false);
@@ -19,6 +21,7 @@ class MenuSystemTest : public ::testing::Test{
       spaghetti = new MenuItem("Spaghetti", 8.75, false);
       gyro = new MenuItem("Gyro", 5.00, false);
       salad = new MenuItem("Salad", 150, true);
+      lunchMenu = new Menu("Lunch Menu");
 
       hamburger->addIngredient("Cheese");
       hamburger->addIngredient("Bread");
@@ -30,6 +33,15 @@ class MenuSystemTest : public ::testing::Test{
 
 TEST_F(MenuSystemTest, GetItemName) {
   ASSERT_EQ("Hamburger", hamburger->getName());
+}
+
+TEST_F(MenuSystemTest, GetMenuName) {
+  ASSERT_EQ("Lunch Menu", lunchMenu->getName());
+}
+
+TEST_F(MenuSystemTest, GetMenuDescription) {
+  lunchMenu->setDescription("Yummy lunch menu!");
+  ASSERT_EQ("Yummy lunch menu!", lunchMenu->getDescription());
 }
 
 TEST_F(MenuSystemTest, HasIngredients) {
