@@ -57,10 +57,9 @@ TEST_F(MenuSystemTest, SetNewPrice){
   ASSERT_EQ(5.50, gyro->getPrice());
 }
 
-//sale error
-// TEST_F(MenuSystemTest, setVegetarian){
-//   gyro->setIsVegetarian(true);
-//   ASSERT_TRUE(gyro->isVegetarian());
-// }
+TEST_F(MenuSystemTest, setVegetarian){
+  gyro->setIsVegetarian(true);
+  ASSERT_TRUE(gyro->isVegetarian());
+}
 
 #endif

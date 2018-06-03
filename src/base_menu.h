@@ -14,9 +14,9 @@ public:
     return _name;
   }
 
-  //void setIsVegatarian(bool isVegetarian) {
-  //     _isVegetarian = isVegetarian;
-  // }
+  virtual void setIsVegetarian(bool) {
+    throw std::invalid_argument("Invalid Operation");
+  }
 
   std::string getDescription() {
     return _description;
