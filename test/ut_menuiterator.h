@@ -10,7 +10,7 @@ class MenuIteratorTest : public ::testing::Test{
   protected:
     BaseMenu* hamburger;
     BaseMenu* pizza;
-    BaseMenu* spaguetti;
+    BaseMenu* spaghetti;
     BaseMenu* gyro;
     BaseMenu* salad;
     BaseMenu* lunchMenu;
@@ -19,7 +19,7 @@ class MenuIteratorTest : public ::testing::Test{
     virtual void SetUp(){
       hamburger = new MenuItem("Hamburger", 5.00, false);
       pizza = new MenuItem("Pizza", 4.50, false);
-      spaguetti = new MenuItem("Spaguetti", 8.75, false);
+      spaghetti = new MenuItem("Spaghetti", 8.75, false);
       gyro = new MenuItem("Gyro", 5.00, false);
       salad = new MenuItem("Salad", 150, true);
       lunchMenu = new Menu("Lunch Menu");
@@ -34,7 +34,7 @@ class MenuIteratorTest : public ::testing::Test{
       lunchMenu->addItem(gyro);
       lunchMenu->addItem(salad);
       dinnerMenu->addItem(hamburger);
-      dinnerMenu->addItem(spaguetti);
+      dinnerMenu->addItem(spaghetti);
       dinnerMenu->addItem(pizza);
     }
 };
@@ -48,6 +48,18 @@ TEST_F(MenuIteratorTest, AddItemToMenu) {
   ASSERT_EQ(nullptr, lunchMenu->getItem("Pizza"));
   lunchMenu->addItem(pizza);
   ASSERT_EQ(pizza, lunchMenu->getItem("Pizza"));
+}
+
+TEST_F(MenuIteratorTest, GetMenuItem){
+  Iterator<BaseMenu *>* it = dinnerMenu->createIterator();
+  it->first();
+  ASSERT_EQ("Hamburger", it->currentItem()->getName());
+  it->next();
+  ASSERT_EQ("Spaghetti", it->currentItem()->getName());
+  it->next();
+  ASSERT_EQ("Pizza", it->currentItem()->getName());
+  it->next();
+  ASSERT_TRUE(it->isDone());
 }
 
 #endif
