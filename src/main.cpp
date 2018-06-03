@@ -15,13 +15,7 @@ void InitMenu();
 int main()
 {
   //InitMenu();
-  BaseMenu* menu1 = new Menu("Breakfast");
-  BaseMenu* item1 = new MenuItem("Pancake",50,true,"It is very delicious.");
-  BaseMenu* item2 = new MenuItem("Sandwich",15,false,"It is very delicious.");
-  BaseMenu* item3 = new MenuItem("Milk Tea",20,false,"It is very delicious.");
-  menu1->addItem(item1);
-  menu1->addItem(item2);
-  menu1->addItem(item3);
+
   LoginMenu();
   string input;
   while(cin>>input)
@@ -34,14 +28,16 @@ int main()
     else if(input=="2")
     {
       system("clear");
-      menu1->printMenu();
+      Manager manager("AAA","001");
+      manager.Operation();
+      break;
     }
     else
     {
       system("clear");
       cout<<"Invalid input.Please input'1' or '2'"<<endl;
+      LoginMenu();
     }
-    LoginMenu();
   }
 
   return 0;

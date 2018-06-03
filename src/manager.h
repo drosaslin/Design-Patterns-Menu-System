@@ -3,13 +3,18 @@
 #include <iostream>
 #include <cstdlib>
 #include <string>
+#include "base_menu.h"
+#include "menu.h"
+#include "menu_item.h"
+#include "iterator.h"
 using namespace std;
 
 class Manager
 {
 public:
   Manager(string,string);
-  ~Manager();
+  //~Manager();
+  void Operation();
   void PrintMenu();
   void PrintItem();
   void AddMenu();

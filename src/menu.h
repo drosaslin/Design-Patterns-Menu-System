@@ -99,20 +99,21 @@ public:
 
   void printMenu()
   {
-    cout<<"\t++++++++++++++++++++++++++++++++++++++++"<<endl
-        <<"\t+                                      +"<<endl
-        <<"\t+       "<<getName()<<"            +"<<endl;
+    cout<<"\t+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"<<endl
+        <<"\t+                                                               +"<<endl
+        <<"\t+\t\t\t       "<<getName()<<"                        +"<<endl;
     Iterator<BaseMenu *> *it = createIterator();
     int number = 1;
     for (it->first();!it->isDone();it->next())
     {
-          cout<<"\t+"<<number<<". "<<it->currentItem()->getName()<<"\t"<<it->currentItem()->getDescription()<<"\t";
-          if (it->currentItem()->isVegetarian()) cout<<"T+"<<endl;
-          else cout<<"F+\t";
-          cout<<it->currentItem()->getPrice()<<"+"<<endl;
+          cout<<"\t+"<<"\t"<<number<<". "<<it->currentItem()->getName()<<"\t"<<it->currentItem()->getDescription()<<"\t";
+          if (it->currentItem()->isVegetarian()) cout<<"T\t";
+          else cout<<"F\t";
+          cout<<it->currentItem()->getPrice()<<"\t+"<<endl;
+          number++;
     }
-    cout <<"\t+                                      +"<<endl
-         <<"\t++++++++++++++++++++++++++++++++++++++++"<<endl;
+    cout <<"\t+                                                               +"<<endl
+         <<"\t+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"<<endl;
   }
 private:
   double _totalPrice;
