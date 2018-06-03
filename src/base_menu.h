@@ -14,10 +14,6 @@ public:
     return _name;
   }
 
-  //void setIsVegatarian(bool isVegetarian) {
-  //     _isVegetarian = isVegetarian;
-  // }
-
   std::string getDescription() {
     return _description;
   }
@@ -29,6 +25,8 @@ public:
   virtual double getPrice() = 0;
 
   virtual bool isVegetarian() = 0;
+
+  virtual void setIsVegetarian(bool isVeg) {}
 
   virtual void setPrice() {}
 

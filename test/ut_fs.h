@@ -53,9 +53,9 @@ TEST_F(MenuSystemTest, AddIngredient){
 }
 
 //sale error
-// TEST_F(MenuSystemTest, setVegetarian){
-//   gyro->setIsVegetarian(true);
-//   ASSERT_TRUE(gyro->isVegetarian());
-// }
+TEST_F(MenuSystemTest, setVegetarian){
+  gyro->setIsVegetarian(true);
+  ASSERT_TRUE(gyro->isVegetarian());
+}
 
 #endif

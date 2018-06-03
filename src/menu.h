@@ -62,7 +62,7 @@ public:
   {
     Iterator<BaseMenu *> *it = createIterator();
     for (it->first();!it->isDone();it->next())
-      if(it->currentItem()->getName()==name)return it;
+      if(it->currentItem()->getName()==name) return it;
     }
     throw std::invalid_argument("Not Found");
     return nullptr;
