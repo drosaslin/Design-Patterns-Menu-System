@@ -17,7 +17,7 @@ void Manager::~Manager()
 }
 void Manager::PrintMenu()
 {
-
+  
 }
 void Manager::PrintItem()
 {

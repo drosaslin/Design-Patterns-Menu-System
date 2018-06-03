@@ -14,6 +14,14 @@ void InitMenu();
 
 int main()
 {
+  //InitMenu();
+  Menu menu1("Breakfast");
+  MenuItem item1("Pancake",50,true,"It is very delicious.");
+  MenuItem item2("Sandwich",15,false,"It is very delicious.");
+  MenuItem item3("Milk Tea",20,false,"It is very delicious.");
+  menu1.addItem(item1);
+  menu1.addItem(item2);
+  menu1.addItem(item3);
   LoginMenu();
   string input;
   while(cin>>input)
@@ -26,7 +34,7 @@ int main()
     else if(input=="2")
     {
       system("clear");
-
+      menu1.printMenu();
     }
     else
     {
@@ -49,13 +57,16 @@ void LoginMenu()
       <<"\t+                                      +"<<endl
       <<"\t++++++++++++++++++++++++++++++++++++++++"<<endl;
 }
-<<<<<<< HEAD
 
-void InitMenu()
+/*void InitMenu()
 {
   Menu menu1("Breakfast");
-  Menu menu2("Lunch");
-  Menu menu3("Dinner");
-}
-=======
->>>>>>> ec98fb8b7698f44ce05398dbb351d6ae1d55068c
+  MenuItem item1("Pancake",50,true,"It is very delicious.");
+  MenuItem item2("Sandwich",15,false,"It is very delicious.");
+  MenuItem item3("Milk Tea",20,false,"It is very delicious.");
+  menu1.addItem(item1);
+  menu1.addItem(item2);
+  menu1.addItem(item3);
+  //Menu menu2("Lunch");
+  //Menu menu3("Dinner");
+}*/

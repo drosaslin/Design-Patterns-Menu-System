@@ -39,10 +39,6 @@ class MenuIteratorTest : public ::testing::Test{
     }
 };
 
-TEST_F(MenuIteratorTest, GetName) {
-  ASSERT_EQ("Lunch Menu", lunchMenu->getName());
-}
-
 TEST_F(MenuIteratorTest, AddItemToMenu) {
   Iterator<BaseMenu*>* it = lunchMenu->createIterator();
   ASSERT_EQ(nullptr, lunchMenu->getItem("Pizza"));

@@ -1,3 +1,5 @@
+#ifndef MANAGER_H
+#define MANAGER_H
 #include <iostream>
 #include <cstdlib>
 #include <string>
@@ -17,3 +19,4 @@ public:
 private:
   string _name,_number;
 }
+#endif

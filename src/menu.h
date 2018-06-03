@@ -2,6 +2,7 @@
 #define MENU_H
 #include <string>
 #include <vector>
+#include <cstdlib>
 #include "base_menu.h"
 using namespace std;
 
@@ -36,10 +37,10 @@ public:
     vector<BaseMenu *>::iterator _current;
   };
 
-  Menu(std::string newName, double price = 0.0, std::string newDescr = "no description available")
+  Menu(std::string newName, std::string newDescr = "no description available")
     :BaseMenu(newName, newDescr)
   {
-    setPrice(price);
+    _totalPrice = 0;
   }
   Iterator<BaseMenu *>*createIterator()
   {
@@ -81,9 +82,10 @@ public:
   {
     return m->isVegetarian();
   }
-  void setPrice(double)
+  void setTotalPrice(double)
   {
-    _totalPrice*=0.8;
+    Iterator<BaseMenu *> *it = createIterator();
+    for (it->first();!it->isDone();it->next())_totalPrice+=it->currentItem()->getPrice();
   }
   double getTotalPrice()
   {
@@ -92,9 +94,26 @@ public:
 
   double getPrice()
   {
-    return 0.0;
+    return _totalPrice;
   }
 
+  void printMenu()
+  {
+    cout<<"\t++++++++++++++++++++++++++++++++++++++++"<<endl
+        <<"\t+                                      +"<<endl
+        <<"\t+       "<<getName()<<"            +"<<endl;
+    Iterator<BaseMenu *> *it = createIterator();
+    int number = 1;
+    for (it->first();!it->isDone();it->next())
+    {
+          cout<<"\t+"<<number<<". "<<it->currentItem()->getName()<<"\t"<<it->currentItem()->getDescription()<<"\t";
+          if (it->currentItem()->isVegetarian()) cout<<"T+"<<endl;
+          else cout<<"F+\t";
+          cout<<it->currentItem()->getPrice()<<"+"<<endl;
+    }
+    cout <<"\t+                                      +"<<endl
+         <<"\t++++++++++++++++++++++++++++++++++++++++"<<endl;
+  }
 private:
   double _totalPrice;
   vector<BaseMenu *> _vMenu;
