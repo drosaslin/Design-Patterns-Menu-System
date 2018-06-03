@@ -6,7 +6,7 @@
 
 class BaseMenu {
 public:
-  BaseMenu(std::string newName) : _name(newName)
+  BaseMenu(std::string newName, std::string newDescr) : _name(newName), _description(newDescr)
   {
   }
 
@@ -28,7 +28,7 @@ public:
 
   virtual void setIsVegetarian(bool isVeg) {}
 
-  virtual void setPrice() {}
+  virtual void setPrice(double) {}
 
   virtual std::string getIngredients() {
     throw std::invalid_argument("Invalid Operation");
