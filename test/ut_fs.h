@@ -52,6 +52,11 @@ TEST_F(MenuSystemTest, AddIngredient){
   ASSERT_TRUE(salad->hasIngredient("Cheese"));
 }
 
+TEST_F(MenuSystemTest, SetNewPrice){
+  gyro->setPrice(5.50);
+  ASSERT_EQ(5.50, gyro->getPrice());
+}
+
 //sale error
 // TEST_F(MenuSystemTest, setVegetarian){
 //   gyro->setIsVegetarian(true);

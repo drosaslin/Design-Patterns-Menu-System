@@ -30,7 +30,7 @@ public:
 
   virtual bool isVegetarian() = 0;
 
-  virtual void setPrice() {}
+  virtual void setPrice(double) {}
 
   virtual std::string getIngredients() {
     throw std::invalid_argument("Invalid Operation");
