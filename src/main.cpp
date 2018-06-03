@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 #include <iostream>
 #include <cstdlib>
 #include <string>
@@ -45,3 +46,14 @@ void LoginMenu()
       <<"\t+                                      +"<<endl
       <<"\t++++++++++++++++++++++++++++++++++++++++"<<endl;
 }
+=======
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main()
+{
+  std::cout<<"Welcome to the menu."<<endl;
+  return 1;
+}
+>>>>>>> 945da2aa89885c177e5319a4ba32032b95dabd37
