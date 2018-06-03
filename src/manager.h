@@ -3,6 +3,7 @@
 #include <iostream>
 #include <cstdlib>
 #include <string>
+#include <regex>
 #include "base_menu.h"
 #include "menu.h"
 #include "menu_item.h"
@@ -13,8 +14,8 @@ class Manager
 {
 public:
   Manager(string,string);
-  //~Manager();
   void Operation();
+  void PrintMenuAndItem();
   void PrintMenu();
   void PrintItem();
   void AddMenu();
