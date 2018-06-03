@@ -1,11 +1,16 @@
-<<<<<<< HEAD
 #include <iostream>
 #include <cstdlib>
 #include <string>
 #include <stdlib.h>
+#include "manager.h"
+#include "base_menu.h"
+#include "menu.h"
+#include "menu_item.h"
+#include "iterator.h"
 using namespace std;
 
 void LoginMenu();
+void InitMenu();
 
 int main()
 {
@@ -16,14 +21,12 @@ int main()
     if(input=="1")
     {
       system("clear");
-      cout<<"You are a Customer."<<endl;
-      //break;
+      break;
     }
     else if(input=="2")
     {
       system("clear");
-      cout<<"You are a Manager."<<endl;
-      //break;
+
     }
     else
     {
@@ -46,14 +49,10 @@ void LoginMenu()
       <<"\t+                                      +"<<endl
       <<"\t++++++++++++++++++++++++++++++++++++++++"<<endl;
 }
-=======
-#include <iostream>
-#include <string>
-using namespace std;
 
-int main()
+void InitMenu()
 {
-  std::cout<<"Welcome to the menu."<<endl;
-  return 1;
+  Menu menu1("Breakfast");
+  Menu menu2("Lunch");
+  Menu menu3("Dinner");
 }
->>>>>>> 945da2aa89885c177e5319a4ba32032b95dabd37
