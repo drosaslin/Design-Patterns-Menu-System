@@ -5,7 +5,7 @@
 #include <string>
 using namespace std;
 
-class Manager()
+class Manager
 {
 public:
   Manager(string,string);

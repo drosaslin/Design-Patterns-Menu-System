@@ -62,6 +62,8 @@ public:
     throw std::invalid_argument("Invalid Operation");
   }
 
+  virtual void printMenu() {}
+
   virtual BaseMenu* getItem(std::string name) {
     throw std::invalid_argument("Invalid Operation");
     return nullptr;
