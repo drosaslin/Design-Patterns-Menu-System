@@ -53,7 +53,7 @@ public:
     {
       if(it->currentItem()->getName()==name)
       {
-        _vMenu.erase(*it);
+        _vMenu.erase(it->currentItem());
         break;
       }
     }
@@ -62,7 +62,7 @@ public:
   {
     Iterator<BaseMenu *> *it = createIterator();
     for (it->first();!it->isDone();it->next())
-      if(it->currentItem()->getName()==name)return it;
+      if(it->currentItem()->getName()==name)return it->currentItem();
     }
     throw std::invalid_argument("Not Found");
     return nullptr;
