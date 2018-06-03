@@ -101,7 +101,7 @@ public:
   {
     cout<<"\t+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"<<endl
         <<"\t+                                                               +"<<endl
-        <<"\t+\t\t\t       "<<getName()<<"                        +"<<endl;
+        <<"\t+\t\t\t"<<getName()<<"\t\t\t\t+"<<endl;
     Iterator<BaseMenu *> *it = createIterator();
     int number = 1;
     for (it->first();!it->isDone();it->next())
