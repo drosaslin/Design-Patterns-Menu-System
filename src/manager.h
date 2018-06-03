@@ -14,10 +14,12 @@ class Manager
 {
 public:
   Manager(string,string);
+  void PrintOperations();
   void Operation();
   void PrintMenuAndItem();
-  void PrintMenu();
-  void PrintItem();
+  void PrintAMenu();
+  void PrintMenuNames();
+  void PrintAllItems();
   void AddMenu();
   void DelMenu();
   void AddItem();

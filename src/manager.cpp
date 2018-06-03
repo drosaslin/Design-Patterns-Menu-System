@@ -34,7 +34,8 @@ Manager::Manager(string name,string number):_name(name),_number(number)
   _vAllItems.push_back(breakfastMenu);
   _vAllItems.push_back(lunchMenu);
 }
-void Manager::Operation()
+
+void Manager::PrintOperations()
 {
   cout<<"\t++++++++++++++++++++++++++++++++++++++++"<<endl
       <<"\t+                                      +"<<endl
@@ -47,6 +48,11 @@ void Manager::Operation()
       <<"\t+     6. Delete Item                   +"<<endl
       <<"\t+                                      +"<<endl
       <<"\t++++++++++++++++++++++++++++++++++++++++"<<endl;
+}
+
+void Manager::Operation()
+{
+  PrintOperations();
   string command;
   regex com("[1-6]");
   cout<<"Please input command";
@@ -61,7 +67,7 @@ void Manager::Operation()
       }
       else if (command=="2")
       {
-        PrintItem();
+        PrintAMenu();
       }
       else if (command=="3")
       {
@@ -99,7 +105,7 @@ void Manager::PrintMenuAndItem()
       menu->printMenu();
   }
 }
-void Manager::PrintMenu()
+void Manager::PrintMenuNames()
 {
   int x = 1;
   for(int n = 0; n < _vAllItems.size(); n++)
@@ -113,9 +119,9 @@ void Manager::PrintMenu()
 
   }
 }
-void Manager::PrintItem()
+void Manager::PrintAMenu()
 {
-  PrintMenu();
+  PrintMenuNames();
   cout<<"Please input menu name: ";
   string name;
   cin.ignore();
@@ -133,29 +139,43 @@ void Manager::PrintItem()
     }
     cout<<"The menu is not exist"<<endl;
   }
-
-
 }
+
+void Manager::PrintAllItems()
+{
+  for(int n = 0; n < _vAllItems.size(); n++)
+  {
+    MenuItem* item = dynamic_cast<MenuItem*>(_vAllItems[n]);
+    if (item)
+        cout << _vAllItems[n]->getName() << endl;
+  }
+}
+
 void Manager::AddMenu()
 {
-  string name,description;
+  string name, description;
   cout<<"Please input menu name:";
   cin.ignore();
   getline(cin, name);
+
   cout<<"Please input menu description:";
   cin.ignore();
   getline(cin, description);
+
   BaseMenu* menu = new Menu(name,description);
   _vAllItems.push_back(menu);
-  PrintMenu();
+
+  PrintMenuNames();
 }
+
 void Manager::DelMenu()
 {
   string name;
-  PrintMenu();
+  PrintMenuNames();
   cout<<"Which menu do you want to delete:";
   cin.ignore();
   getline(cin, name);
+
   for(int n = 0; n < _vAllItems.size(); n++)
   {
     Menu* menu = dynamic_cast<Menu*>(_vAllItems[n]);
@@ -168,10 +188,12 @@ void Manager::DelMenu()
       }
     }
   }
-  PrintMenu();
+  PrintMenuNames();
 }
+
 void Manager::AddItem()
 {
+  PrintAllItems();
   string name, description;
   char yn;
   double price;
@@ -194,9 +216,12 @@ void Manager::AddItem()
 
   BaseMenu* newItem = new MenuItem(name, price, isVeg, description);
   _vAllItems.push_back(newItem);
+  PrintAllItems();
 }
+
 void Manager::DelItem()
 {
+  PrintAllItems();
   string name;
   cout<<"Which item do you want to delete?:";
   cin.ignore();
@@ -213,4 +238,5 @@ void Manager::DelItem()
       }
     }
   }
+  PrintAllItems();
 }
