@@ -149,8 +149,8 @@ void Manager::PrintAMenu()
         return;
       }
     }
-    cout<<"The menu is not exist"<<endl;
   }
+  cout<<"The menu does not exist"<<endl;
 }
 
 void Manager::PrintAllItems()
@@ -210,7 +210,7 @@ void Manager::AddItem()
   char yn;
   double price;
   bool isVeg;
-  cout << "Input new menu name: ";
+  cout << "Input new item name: ";
   cin.ignore();
   getline(cin, name);
 
