@@ -46,6 +46,7 @@ void Manager::PrintOperations()
       <<"\t+     4. Delete Menu                   +"<<endl
       <<"\t+     5. Add New Item                  +"<<endl
       <<"\t+     6. Delete Item                   +"<<endl
+      <<"\t+     7. Exit                          +"<<endl
       <<"\t+                                      +"<<endl
       <<"\t++++++++++++++++++++++++++++++++++++++++"<<endl;
 }
@@ -54,8 +55,8 @@ void Manager::Operation()
 {
   PrintOperations();
   string command;
-  regex com("[1-6]");
-  cout<<"Please input command";
+  regex com("[1-7]");
+  cout<<"Please input command: ";
   cin>>command;
   while(1)
   {
@@ -85,13 +86,22 @@ void Manager::Operation()
       {
         DelItem();
       }
-      break;
+      else if (command=="6")
+      {
+        DelItem();
+      }
+      else if (command=="7")
+      {
+        break;
+      }
     }
     else
     {
-      cout<<"Input Error. Please input 1 ~ 6:";
-      cin>>command;
+      cout<<"Input Error. Please input 1 ~ 7:";
     }
+    PrintOperations();
+    cout<<"Please input command: ";
+    cin>>command;
   }
 
 }
@@ -105,6 +115,7 @@ void Manager::PrintMenuAndItem()
       menu->printMenu();
   }
 }
+
 void Manager::PrintMenuNames()
 {
   int x = 1;
@@ -119,6 +130,7 @@ void Manager::PrintMenuNames()
 
   }
 }
+
 void Manager::PrintAMenu()
 {
   PrintMenuNames();
@@ -143,11 +155,12 @@ void Manager::PrintAMenu()
 
 void Manager::PrintAllItems()
 {
+  cout << "\nCurrent Items:\n";
   for(int n = 0; n < _vAllItems.size(); n++)
   {
     MenuItem* item = dynamic_cast<MenuItem*>(_vAllItems[n]);
     if (item)
-        cout << _vAllItems[n]->getName() << endl;
+        cout << "-" << _vAllItems[n]->getName() << endl;
   }
 }
 
@@ -193,7 +206,6 @@ void Manager::DelMenu()
 
 void Manager::AddItem()
 {
-  PrintAllItems();
   string name, description;
   char yn;
   double price;

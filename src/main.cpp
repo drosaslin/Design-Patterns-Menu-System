@@ -3,10 +3,6 @@
 #include <string>
 #include <stdlib.h>
 #include "manager.h"
-#include "base_menu.h"
-#include "menu.h"
-#include "menu_item.h"
-#include "iterator.h"
 using namespace std;
 
 void LoginMenu();
@@ -17,27 +13,33 @@ int main()
   //InitMenu();
 
   LoginMenu();
+  cout << "Choose your user type: ";
   string input;
-  while(cin>>input)
+  while(1)
   {
+    cin >> input;
     if(input=="1")
     {
       system("clear");
-      break;
     }
     else if(input=="2")
     {
       system("clear");
       Manager manager("AAA","001");
       manager.Operation();
+    }
+    else if(input=="3")
+    {
       break;
     }
     else
     {
       system("clear");
-      cout<<"Invalid input.Please input'1' or '2'"<<endl;
-      LoginMenu();
+      cout<<"Invalid input.Please input'1' or '2' or '3'"<<endl;
     }
+    system("clear");
+    LoginMenu();
+    cout << "Choose your user type: ";
   }
 
   return 0;
@@ -50,6 +52,7 @@ void LoginMenu()
       <<"\t+     Welcome to the MenuSystem        +"<<endl
       <<"\t+     1. Customer                      +"<<endl
       <<"\t+     2. Manager                       +"<<endl
+      <<"\t+     3. Exit                          +"<<endl
       <<"\t+                                      +"<<endl
       <<"\t++++++++++++++++++++++++++++++++++++++++"<<endl;
 }
