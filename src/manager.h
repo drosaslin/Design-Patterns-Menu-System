@@ -23,5 +23,6 @@ public:
   void DelItem();
 private:
   string _name,_number;
+  vector<BaseMenu*> _vAllItems;
 };
 #endif
