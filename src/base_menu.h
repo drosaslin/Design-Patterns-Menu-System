@@ -14,7 +14,7 @@ public:
     return _name;
   }
 
-  // void setIsVegatarian(bool isVegetarian) {
+  //void setIsVegatarian(bool isVegetarian) {
   //     _isVegetarian = isVegetarian;
   // }
 

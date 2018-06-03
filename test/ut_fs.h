@@ -32,7 +32,7 @@ TEST_F(MenuSystemTest, GetItemName) {
   ASSERT_EQ("Hamburger", hamburger->getName());
 }
 
-TEST_F(MenuSystemTest, AddIngredients) {
+TEST_F(MenuSystemTest, HasIngredients) {
   ASSERT_TRUE(hamburger->hasIngredient("Cheese"));
 }
 
@@ -46,5 +46,16 @@ TEST_F(MenuSystemTest, GetItemIngredients){
   ASSERT_EQ(150, salad->getPrice());
   ASSERT_TRUE(salad->isVegetarian());
 }
+
+TEST_F(MenuSystemTest, AddIngredient){
+  salad->addIngredient("Cheese");
+  ASSERT_TRUE(salad->hasIngredient("Cheese"));
+}
+
+//sale error
+// TEST_F(MenuSystemTest, setVegetarian){
+//   gyro->setIsVegetarian(true);
+//   ASSERT_TRUE(gyro->isVegetarian());
+// }
 
 #endif

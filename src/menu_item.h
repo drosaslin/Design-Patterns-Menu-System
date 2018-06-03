@@ -30,7 +30,7 @@ public:
     return _isVegetarian;
   }
 
-  void setVegetarian(bool isVeg){
+  void setIsVegetarian(bool isVeg){
     _isVegetarian = isVeg;
   }
 
