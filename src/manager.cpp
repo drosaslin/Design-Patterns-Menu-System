@@ -97,7 +97,7 @@ void Manager::Operation()
     }
     else
     {
-      cout<<"Input Error. Please input 1 ~ 7:";
+      cout<<"Input Error. Please input 1 ~ 7:"<<endl;
     }
     PrintOperations();
     cout<<"Please input command: ";
