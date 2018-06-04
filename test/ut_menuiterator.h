@@ -58,4 +58,16 @@ TEST_F(MenuIteratorTest, GetMenuItem){
   ASSERT_TRUE(it->isDone());
 }
 
+TEST_F(MenuIteratorTest, GetMenuItem){
+  Iterator<BaseMenu *>* it = dinnerMenu->createIterator();
+  it->first();
+  ASSERT_EQ("Hamburger", it->currentItem()->getName());
+  it->next();
+  ASSERT_EQ("Spaghetti", it->currentItem()->getName());
+  it->next();
+  ASSERT_EQ("Pizza", it->currentItem()->getName());
+  it->next();
+  ASSERT_TRUE(it->isDone());
+}
+
 #endif
