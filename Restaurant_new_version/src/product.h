@@ -17,6 +17,10 @@ public:
     return _description;
   }
 
+  bool GetIsVegetarian() {
+    return isVegetarian;
+  }
+
   void SetName(std::string newName) {
     _name = newName;
   }
@@ -25,9 +29,14 @@ public:
     _description = newDescription;
   }
 
+  void setIsVegetarian(bool flag) {
+    isVegetarian = flag;
+  }
+
 private:
   std::string _name;
   std::string _description;
+  bool isVegetarian;
 };
 
 #endif
