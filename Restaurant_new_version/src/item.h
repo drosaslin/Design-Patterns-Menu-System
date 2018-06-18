@@ -138,7 +138,7 @@ private:
   string _name,_description;
   double _price, _perProtein, _perFat, _perCarbonhydrates, _weight;
   bool _isVegetarian;
-  vector<Produt *> _vItem;
+  vector<Product *> _vItem;
 };
 
 #endif
