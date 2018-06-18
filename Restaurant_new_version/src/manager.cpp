@@ -1,4 +1,3 @@
-<<<<<<< HEAD:src/manager.cpp
 #include <iostream>
 #include <cstdlib>
 #include <string>
@@ -508,4 +507,3 @@ void Manager::DelItem()
   }
   PrintAllItems();
 }
->>>>>>> 396b6d4bd3f9d070e4c4927349a2626ad3d6bc76:Restaurant_new_version/src/manager.cpp

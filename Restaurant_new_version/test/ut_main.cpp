@@ -1,7 +1,7 @@
 #include <gtest/gtest.h>
 #include "ut_fs.h"
 #include "ut_menuiterator.h"
-#include "ut_manager.g"
+//#include "ut_manager.h"
 
 int main( int argc , char **argv )
 {
