@@ -233,6 +233,7 @@ void Manager::DeleteItemFromCategory(FullMenu& menu)
   cout << "Choose category: ";
   cin >> category;
 
+  cout << endl;
   for(int n = 0; n < menu.GetCategory(category - 1).GetSize(); n++) {
     cout << n + 1 << ". " << menu.GetCategory(category - 1).GetItem(n).GetName() << endl;
   }
@@ -241,6 +242,58 @@ void Manager::DeleteItemFromCategory(FullMenu& menu)
 
   string itemName = menu.GetCategory(category - 1).GetItem(itemChosen - 1).GetName();
   menu.GetCategory(category - 1).DelItem(itemName);
+}
+
+void Manager::ManageStorage(vector<Item>& item, vector<Ingredient>& ingredient)
+{
+  string command;
+  cout << "\n1. Create new item" << endl << "2. Delete item" << endl;
+  cout << "Please choose your command: ";
+  cin.ignore();
+  getline(cin, command);
+  if(command == "1")
+    CreateItem(item, ingredient);
+  // if(command == "2")
+  //   DeleteItemFromCategory(menu);
+}
+
+void Manager::CreateItem(vector<Item>& item, vector<Ingredient>& ingredient)
+{
+  double price;
+  string name, description;
+  cout << "Enter the item's name: ";
+  //cin.ignore();
+  getline(cin, name);
+  cout << "Enter the item's description: ";
+  cin.ignore();
+  getline(cin, description);
+  cout << "Enter the item's price: ";
+  cin >> price;
+
+  item.push_back(Item(name, description, price));
+  AddIngredientToItem(item[item.size() - 1], ingredient);
+}
+
+void Manager::AddIngredientToItem(Item& item, vector<Ingredient>& ingredient)
+{
+  string command;
+  cout << endl:
+  for(int n = 0; n < ingredient.size(); n++) {
+    cout << n + 1 << ". " << ingredient[n].GetName() << endl;
+  }
+
+  do {
+    cout << "Add ingredients to your item(input 'x' when finished): ";
+    cin >> command;
+    int index = atoi(command.c_str());
+    if(command == "x")
+      break;
+    else if(index >= 0 && index <= ingredient.size()) {
+      item.AddIngredient(&ingredient[index - 1]);
+    }
+    else
+      cout << "Invalid input\n";
+  }while(1);
 }
 
 // void Manager::DelCategory()

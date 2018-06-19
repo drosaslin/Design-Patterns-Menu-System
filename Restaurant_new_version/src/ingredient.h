@@ -17,10 +17,6 @@ public:
   {
 
   }
-  string GetName()
-  {
-    return _name;
-  }
   double GetProtein()
   {
     return _perProtein * _weight;

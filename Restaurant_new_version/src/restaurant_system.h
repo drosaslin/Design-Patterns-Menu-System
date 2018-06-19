@@ -86,8 +86,8 @@ public:
           manager.DelCategory(fullMenu);
         else if (command=="4")
           manager.ModifyCategory(fullMenu, _vItem);
-        // else if (command=="5")
-        //   AddItem();
+        else if (command=="5")
+          manager.ManageStorage(_vItem, _vIngredient);
         // else if (command=="6")
         //   DelItem();
         // else if (command=="6")
@@ -108,7 +108,7 @@ public:
         <<"\t+     2. Add Category                  +"<<endl
         <<"\t+     3. Delete Category               +"<<endl
         <<"\t+     4. Modify Category               +"<<endl
-        <<"\t+     5. Add New Item                  +"<<endl
+        <<"\t+     5. Manage Storage                +"<<endl
         <<"\t+     6. Delete Item                   +"<<endl
         <<"\t+     7. Exit                          +"<<endl
         <<"\t+                                      +"<<endl
