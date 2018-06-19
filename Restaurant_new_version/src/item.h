@@ -3,15 +3,15 @@
 #include <iostream>
 #include <string>
 #include <vector>
-#include "product.h"
+#include "Ingredient.h"
 #include "ingredient.h"
 #include "iterator.h"
 using namespace std;
 
-class Item:public Product
+class Item : public Product
 {
 public:
-  class ItemIterator : public Iterator<Product*>
+  class ItemIterator : public Iterator<Ingredient*>
   {
   public:
     ItemIterator(Item *it)
@@ -20,7 +20,7 @@ public:
     }
     void first()
     {
-      _current=_menu->_vItem.begin();
+      _current=_item->_vIngredient.begin();
     }
     void next()
     {
@@ -28,26 +28,33 @@ public:
     }
     bool isDone()const
     {
-      return (_current == _item->_vItem.end());
+      return (_current == _item->_vIngredient.end());
     }
-    Product *currentItem()
+    Ingredient *currentItem()
     {
       return *_current;
     }
   private:
     Item *_item;
-    vector<Product *>::iterator _current;
+    vector<Ingredient *>::iterator _current;
   };
+
   Item()
   {
 
   }
-  Item(string name, string description, double price, double num1, double num2, double num3, double w)
-  :_name(name), _description(description), _price(price), _perProtein(num1), _perFat(num2), _perCarbonhydratesr(num3), _weight(w)
+
+  Item(string name, string description, int price)
+  :Product(name, description), _price(price)
   {
 
   }
-  Iterator<Product *>*createIterator()
+  // Item()
+  // :Ingredient(name, description), _price(price), _perProtein(num1), _perFat(num2), _perCarbonhydratesr(num3), _weight(w)
+  // {
+  //
+  // }
+  Iterator<Ingredient *>*createIterator()
   {
     return new ItemIterator(this);
   }
@@ -71,21 +78,20 @@ public:
   {
     _perCarbonhydrates = num;
   }
-  string GetName()
-  {
-    return _name;
-  }
-  string GetDescription()
-  {
-    return _description;
-  }
+  // string GetName()
+  // {
+  //   return _name;
+  // }
+  // string GetDescription()
+  // {
+  //   return _description;
+  // }
   double GetPrice()
   {
     return _price;
   }
   bool IsVegetarian()
   {
-
     return _isVegetarian;
   }
   double GetProtein()
@@ -108,37 +114,37 @@ public:
   {
     return _weight;
   }
-  void AddIngredient(Product *ingredient)
+  void AddIngredient(Ingredient *ingredient)
   {
-    _vItem.push_back(ingredient);
+    _vIngredient.push_back(ingredient);
   }
-  void DelIngredient(string name)
+  // void DelIngredient(string name)
+  // {
+  //   Iterator<_vIngredient *> *it = createIterator();
+  //   for (it->first();!it->isDone();it->next())
+  //   {
+  //     if(it->currentItem()->GetName()==name)
+  //     {
+  //       _vItem.erase(it->currentItem());
+  //       break;
+  //     }
+  //   }
+  // }
+  Ingredient* GetItem(string name)
   {
-    Iterator<Product *> *it = createIterator();
-    for (it->first();!it->isDone();it->next())
-    {
-      if(it->currentItem()->getName()==name)
-      {
-        _vItem.erase(*it->currentItem());
-        break;
-      }
-    }
-  }
-  Product* GetItem(string name)
-  {
-    Iterator<Product *> *it = createIterator();
+    Iterator<Ingredient *> *it = createIterator();
     for (it->first();!it->isDone();it->next()) {
-      if(it->currentItem()->getName()==name) return it->currentItem();
+      if(it->currentItem()->GetName()==name) return it->currentItem();
     }
     //throw std::invalid_argument("Not Found");
     return nullptr;
   }
 
 private:
-  string _name,_description;
+  string _name, _description;
   double _price, _perProtein, _perFat, _perCarbonhydrates, _weight;
   bool _isVegetarian;
-  vector<Product *> _vItem;
+  vector<Ingredient *> _vIngredient;
 };
 
 #endif

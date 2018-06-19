@@ -4,26 +4,25 @@
 #include <cstdlib>
 #include <string>
 #include <regex>
-#include "menu.h"
+#include "full_menu.h"
 #include "iterator.h"
+#include "full_menu.h"
+#include "category.h"
 using namespace std;
 
 class Manager
 {
 public:
+  Manager();
   Manager(string,string);
   void PrintOperations();
-  void Operation();
-  void PrintMenuAndItem();
-  void PrintAMenu();
-  void PrintMenuNames();
-  void PrintAllItems();
-  void AddMenu();
-  void DelMenu();
-  void AddItem();
-  void DelItem();
+  void AddCategory(FullMenu& menu);
+  void DelCategory(FullMenu& menu);
+  void ModifyCategory(FullMenu& menu, vector<Item>& item);
 private:
   string _name,_number;
-  vector<BaseMenu*> _vAllItems;
+
+  void AddItemToCategory(FullMenu& menu, vector<Item>& item);
+  void DeleteItemFromCategory(FullMenu& menu);
 };
 #endif

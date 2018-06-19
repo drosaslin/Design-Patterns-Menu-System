@@ -2,7 +2,7 @@
 #include <cstdlib>
 #include <string>
 #include <stdlib.h>
-#include "manager.h"
+#include "restaurant_system.h"
 using namespace std;
 
 void LoginMenu();
@@ -10,7 +10,7 @@ void InitMenu();
 
 int main()
 {
-  //InitMenu();
+  RestaurantSystem restaurantSystem;
 
   LoginMenu();
   cout << "Choose your user type: ";
@@ -25,8 +25,7 @@ int main()
     else if(input=="2")
     {
       system("clear");
-      Manager manager("AAA","001");
-      manager.Operation();
+      restaurantSystem.ManagerOperations();
     }
     else if(input=="3")
     {
@@ -43,7 +42,7 @@ int main()
   }
 
   return 0;
-}
+};
 
 void LoginMenu()
 {
@@ -56,16 +55,3 @@ void LoginMenu()
       <<"\t+                                      +"<<endl
       <<"\t++++++++++++++++++++++++++++++++++++++++"<<endl;
 }
-
-/*void InitMenu()
-{
-  Menu menu1("Breakfast");
-  MenuItem item1("Pancake",50,true,"It is very delicious.");
-  MenuItem item2("Sandwich",15,false,"It is very delicious.");
-  MenuItem item3("Milk Tea",20,false,"It is very delicious.");
-  menu1.addItem(item1);
-  menu1.addItem(item2);
-  menu1.addItem(item3);
-  //Menu menu2("Lunch");
-  //Menu menu3("Dinner");
-}*/

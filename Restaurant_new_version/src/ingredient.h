@@ -5,15 +5,15 @@
 #include "product.h"
 using namespace std;
 
-class Ingredient:public product
+class Ingredient : public Product
 {
 public:
   Ingredient()
   {
-
   }
-  Ingredient(string name, string description, double num1, double num2, double num3, double w, bool flag)
-  :_name(name), _description(description), _perProtein(num1), _perFat(num2), _perCarbonhydrates(num3), _weight(w), _isVegetarian(flag)
+
+  Ingredient(string name, string description, double perProtein, double perFat, double perCarbohydrates, double weight, bool flag)
+  :Product(name, description), _perProtein(perProtein), _perFat(perFat), _perCarbohydrates(perCarbohydrates), _weight(weight), _isVegetarian(flag)
   {
 
   }
@@ -31,7 +31,7 @@ public:
   }
   double GetCarbohydrates()
   {
-    return _perCarbonhydrates * _weight;
+    return _perCarbohydrates * _weight;
   }
   double GetCalorie()
   {
@@ -43,11 +43,11 @@ public:
   }
   bool IsVegetarian()
   {
-    return _isVegetarian
+    return _isVegetarian;
   }
 private:
   string _name;
-  double _perProtein, _perFat, _perCarbonhydrates, _calorie, _weight;
+  double _perProtein, _perFat, _perCarbohydrates, _calorie, _weight;
   bool _isVegetarian;
 };
 

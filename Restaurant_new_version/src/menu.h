@@ -5,6 +5,8 @@
 
 class Menu {
 public:
+  Menu(){}
+
   Menu(std::string newName, std::string newDescription)
     :_name(newName), _description(newDescription)
   {}
