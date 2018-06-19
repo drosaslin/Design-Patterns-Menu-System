@@ -107,7 +107,7 @@ public:
         <<"\t+     1. Display Menu                  +"<<endl
         <<"\t+     2. Add Category                  +"<<endl
         <<"\t+     3. Delete Category               +"<<endl
-        <<"\t+     4. Modify Category               +"<<endl
+        <<"\t+     4. Modify Categories             +"<<endl
         <<"\t+     5. Manage Storage                +"<<endl
         <<"\t+     6. Delete Item                   +"<<endl
         <<"\t+     7. Exit                          +"<<endl
