@@ -2,7 +2,6 @@
 #define MENU_H
 
 #include <string>
-#include "visitor.h"
 
 class Menu {
 public:
@@ -28,9 +27,7 @@ public:
     _description = newDescription;
   }
 
-  virtual void accept(Visitor &v)
-  {
-
+  virtual void update(std::string itemName){
   }
 
 private:

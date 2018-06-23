@@ -3,8 +3,13 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <iomanip>
 #include "ingredient.h"
 #include "iterator.h"
+#include "menu.h"
+#include "category.h"
+class Category;
+
 using namespace std;
 
 class Item : public Product
@@ -19,7 +24,7 @@ public:
     }
     void first()
     {
-      _current=_item->_vIngredient.begin();
+      _current = _item->_vIngredient.begin();
     }
     void next()
     {
@@ -29,7 +34,7 @@ public:
     {
       return (_current == _item->_vIngredient.end());
     }
-    Ingredient *currentItem()
+    Ingredient* currentItem()
     {
       return *_current;
     }
@@ -40,19 +45,14 @@ public:
 
   Item()
   {
-
   }
 
   Item(string name, string description, string productCode, int price)
-  :Product(name, description, productCode), _price(price)
+    :Product(name, description, productCode), _price(price)
   {
 
   }
-  // Item()
-  // :Ingredient(name), _price(price), _perProtein(num1), _perFat(num2), _perCarbonhydratesr(num3), _weight(w)
-  // {
-  //
-  // }
+
   Iterator<Ingredient *>*createIterator()
   {
     return new ItemIterator(this);
@@ -73,18 +73,10 @@ public:
   {
     _perFat = num;
   }
-  double GetCarbohydrates(double num)
+  double SetCarbohydrates(double num)
   {
     _perCarbonhydrates = num;
   }
-  // string GetName()
-  // {
-  //   return _name;
-  // }
-  // string GetDescription()
-  // {
-  //   return _description;
-  // }
   double GetPrice()
   {
     return _price;
@@ -139,11 +131,26 @@ public:
     return nullptr;
   }
 
+  void AddObserver(Menu* cat) {
+    _observers.push_back(cat);
+    //cout << GetName() << " observer" << cat->GetName() << endl;
+  }
+
+  void NotifyDeletion() {
+    //cout << "notiying" << _observers[0]->GetName() << endl;
+    for(int n = _observers.size() - 1; n >= 0; n--) {
+      _observers[n]->update(GetName());
+      _observers.erase(_observers.begin() + n);
+    }
+    //cout << "notified" << endl;
+  }
+
 private:
   string _name, _description;
   double _price, _perProtein, _perFat, _perCarbonhydrates, _weight;
   bool _isVegetarian;
-  vector<Ingredient *> _vIngredient;
+  vector<Ingredient*> _vIngredient;
+  vector<Menu*> _observers;
 };
 
 #endif

@@ -3,6 +3,7 @@
 
 #include <string>
 class Menu;
+class FullMenu;
 class Category;
 
 class Visitor {

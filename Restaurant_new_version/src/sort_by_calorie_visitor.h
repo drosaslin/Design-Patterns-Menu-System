@@ -2,11 +2,14 @@
 #define SORT_BY_CALORIE_VISITOR_H
 
 #include <vector>
-#include "visitor.h"
 #include "menu.h"
 #include "full_menu.h"
 #include "category.h"
 #include "iterator.h"
+class Menu;
+class FullMenu;
+class Category;
+
 using namespace std;
 
 class SortByCalorieVisitor:public Visitor
@@ -14,11 +17,10 @@ class SortByCalorieVisitor:public Visitor
 public:
   SortByCalorieVisitor():_maxPrice(0),_index(0)
   {
-
   }
   void visit(FullMenu *fm)
   {
-    Iterator<FullMenu *> *it = fm->createIterator();
+    Iterator<Category> *it = fm->createIterator();
     for (it->first(); !it->isDone(); it->next())
     {
       it->currentItem()->accept(*this);

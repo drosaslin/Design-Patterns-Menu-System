@@ -3,46 +3,51 @@
 
 #include "menu.h"
 #include "category.h"
+#include "iterator.h"
+// #include "sort_by_price_visitor.h"
+// #include "sort_by_calorie_visitor.h"
 #include <string>
 #include <vector>
 
-class FullMenu: public Menu{
+class FullMenu : public Menu{
 public:
-  class FullMenuIterator : public Iterator<Menu *>
+  class FullMenuIterator : public Iterator<Category>
   {
   public:
     FullMenuIterator(FullMenu *it)
     {
-      _fullMenu=it;
+      _menu = it;
     }
     void first()
     {
-      _current=_fullMenu->_vMenu.begin();
+      _current = _menu->_vCategory.begin();
     }
     void next()
     {
       ++_current;
     }
-    bool isDone()const
+    bool isDone() const
     {
-      return (_current == _fullMenu->_vMenu.end());
+      return (_current == _menu->_vCategory.end());
     }
-    Menu *currentItem()
+    Category currentItem()
     {
       return *_current;
     }
   private:
-    FullMenu *_fullMenu;
-    vector<Menu *>::iterator _current;
+    FullMenu *_menu;
+    vector<Category>::iterator _current;
   };
-  FullMenu(){}
+
+  FullMenu(){
+  }
 
   FullMenu(string name, string description)
     :Menu(name, description)
   {
   }
 
-  void AddCategory(Category cat){
+  void AddCategory(Category& cat){
     _vCategory.push_back(cat);
   }
 
@@ -52,16 +57,23 @@ public:
         _vCategory.erase(_vCategory.begin()+n);
         return;
       }
-      std::cout << "This category doesn't exist" << std::endl;
+    }
+  }
+
+  void DisplayCategories() {
+    int n;
+    Iterator<Category>* it = createIterator();
+    for(n = 1, it->first(); !it->isDone(); it->next(), n++) {
+      cout << n << ". " << it->currentItem().GetName() << endl;
     }
   }
 
   void ShowMenu(){
+    Iterator<Category>* it = createIterator();
     std::cout << GetName() << std::endl;
-    for(int n = 0; n < _vCategory.size(); n++){
-      std::cout << _vCategory[n].GetName() << std::endl;
-      _vCategory[n].ShowMenu();
-      std::cout << std::endl;
+    for(it->first(); !it->isDone(); it->next()) {
+      std::cout << std::endl << it->currentItem().GetName() << std::endl;
+      it->currentItem().ShowMenu();
     }
   }
 
@@ -74,20 +86,18 @@ public:
     return (int)_vCategory.size();
   }
 
-  //READ!!!!!:不會編譯
-  Iterator<Menu *>*createIterator()
+  Iterator<Category>* createIterator()
   {
     return new FullMenuIterator(this);
   }
 
-  void accept(Visitor &v)
-  {
-    v.visit(this);
-  }
+  // void accept(Visitor &v)
+  // {
+  //   v.visit(this);
+  // }
 
 private:
   std::vector<Category> _vCategory;
-  std::vector<Menu *> _vMenu;
 };
 
 #endif

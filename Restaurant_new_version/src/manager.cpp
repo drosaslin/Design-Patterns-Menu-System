@@ -16,129 +16,16 @@ void Manager::PrintOperations()
   cout<<"\t++++++++++++++++++++++++++++++++++++++++"<<endl
       <<"\t+                                      +"<<endl
       <<"\t+     Welcome to the ManagerSystem     +"<<endl
-      <<"\t+     1. Display All Menus & Items     +"<<endl
-      <<"\t+     2. Display A Menu                +"<<endl
-      <<"\t+     3. Add New Menu                  +"<<endl
-      <<"\t+     4. Delete Menu                   +"<<endl
-      <<"\t+     5. Add New Item                  +"<<endl
+      <<"\t+     1. Display Menu                  +"<<endl
+      <<"\t+     2. Add Category                  +"<<endl
+      <<"\t+     3. Delete Category               +"<<endl
+      <<"\t+     4. Modify Categories             +"<<endl
+      <<"\t+     5. Manage Storage                +"<<endl
       <<"\t+     6. Delete Item                   +"<<endl
       <<"\t+     7. Exit                          +"<<endl
       <<"\t+                                      +"<<endl
       <<"\t++++++++++++++++++++++++++++++++++++++++"<<endl;
 }
-
-// void Manager::Operation()
-// {
-//   PrintOperations();
-//   string command;
-//   regex com("[1-7]");
-//   cout<<"Please input command: ";
-//   cin>>command;
-//   while(1)
-//   {
-//     if (regex_match(command,com))
-//     {
-//       if (command=="1")
-//       {
-//         PrintMenuAndItem();
-//       }
-//       else if (command=="2")
-//       {
-//         PrintAMenu();
-//       }
-//       else if (command=="3")
-//       {
-//         AddMenu();
-//       }
-//       else if (command=="4")
-//       {
-//         DelMenu();
-//       }
-//       else if (command=="5")
-//       {
-//         AddItem();
-//       }
-//       else if (command=="6")
-//       {
-//         DelItem();
-//       }
-//       else if (command=="6")
-//       {
-//         DelItem();
-//       }
-//       else if (command=="7")
-//       {
-//         break;
-//       }
-//     }
-//     else
-//     {
-//       cout<<"Input Error. Please input 1 ~ 7:"<<endl;
-//     }
-//     PrintOperations();
-//     cout<<"Please input command: ";
-//     cin>>command;
-//   }
-
-//}
-// void Manager::PrintMenuAndItem(FullMenu menu)
-// {
-//   int size = _vAllItems.size();
-//   for(int n = 0; n < size; n++)
-//   {
-//     Menu *menu = dynamic_cast<Menu*>(_vAllItems[n]);
-//     if(menu)
-//       menu->printMenu();
-//   }
-// }
-
-// void Manager::PrintMenuNames()
-// {
-//   int x = 1;
-//   for(int n = 0; n < _vAllItems.size(); n++)
-//   {
-//     Menu* menu = dynamic_cast<Menu*>(_vAllItems[n]);
-//     if (menu)
-//     {
-//       cout << x++ << ". ";
-//       cout << _vAllItems[n]->getName() << endl;
-//     }
-//
-//   }
-// }
-
-// void Manager::PrintAMenu()
-// {
-//   PrintMenuNames();
-//   cout<<"Please input menu name: ";
-//   string name;
-//   cin.ignore();
-//   getline(cin, name);
-//   for(int n = 0; n < _vAllItems.size(); n++)
-//   {
-//     Menu* menu = dynamic_cast<Menu*>(_vAllItems[n]);
-//     if (menu)
-//     {
-//       if (_vAllItems[n]->getName() == name)
-//       {
-//         _vAllItems[n]->printMenu();
-//         return;
-//       }
-//     }
-//   }
-//   cout<<"The menu does not exist"<<endl;
-// }
-
-// void Manager::PrintAllItems()
-// {
-//   cout << "\nCurrent Items:\n";
-//   for(int n = 0; n < _vAllItems.size(); n++)
-//   {
-//     MenuItem* item = dynamic_cast<MenuItem*>(_vAllItems[n]);
-//     if (item)
-//         cout << "-" << _vAllItems[n]->getName() << endl;
-//   }
-// }
 
 void Manager::AddCategory(FullMenu& menu)
 {
@@ -150,17 +37,33 @@ void Manager::AddCategory(FullMenu& menu)
   cout<<"Please input category description:";
   cin.ignore();
   getline(cin, description);
+  Category newCat(name, description);
+  menu.AddCategory(newCat);
+}
 
-  menu.AddCategory(Category(name, description));
+void Manager::AddCategory(FullMenu& menu, Category& newCat)
+{
+  menu.AddCategory(newCat);
 }
 
 void Manager::DelCategory(FullMenu& menu)
 {
-  string name;
-  cout<<"Please input category name:";
-  cin.ignore();
-  getline(cin, name);
-  menu.DelCategory(name);
+  system("clear");
+  string input;
+  int index;
+  menu.DisplayCategories();
+  do {
+    cout << "Please input the category you want to delete(input 'x' to cancel): ";
+    cin >> input;
+    index = atoi(input.c_str());
+    if(index > 0 && index <= menu.GetSize() || input == "x") break;
+    else cout << "Invalid input, please try again.\n";
+  }while(1);
+  system("clear");
+  if(input != "x") {
+    cout << menu.GetCategory(index - 1).GetName() << " successfully deleted!\n";
+    menu.DelCategory(menu.GetCategory(index - 1).GetName());
+  }
 }
 
 void Manager::ModifyCategory(FullMenu& menu, vector<Item>& item)
@@ -197,6 +100,11 @@ void Manager::AddItemToCategory(FullMenu& menu, vector<Item>& item)
     menu.GetCategory(category - 1).AddItem(&item[itemChosen - 1]);
 }
 
+void Manager::AddItemToCategory(FullMenu& menu, vector<Item>& item, int catIndex, int itemIndex)
+{
+    menu.GetCategory(catIndex - 1).AddItem(&item[itemIndex - 1]);
+}
+
 void Manager::DeleteItemFromCategory(FullMenu& menu)
 {
   int category, itemChosen;
@@ -227,25 +135,46 @@ void Manager::ManageStorage(vector<Item>& item, vector<Ingredient>& ingredient)
   getline(cin, command);
   if(command == "1")
     CreateItem(item, ingredient);
-  // if(command == "2")
-  //   DeleteItemFromCategory(menu);
+  if(command == "2")
+    DeleteItemFromStorage(item);
 }
 
 void Manager::CreateItem(vector<Item>& item, vector<Ingredient>& ingredient)
 {
   double price;
-  string name, description, productCode;
+  string name, description, itemCode;
   cout << "Enter the item's name: ";
   getline(cin, name);
   cout << "Enter the item's description: ";
   getline(cin, description);
-  cout << "Enter the item's code: ";
-  getline(cin, productCode);
   cout << "Enter the item's price: ";
   cin >> price;
+  cout << "Enter the item's code: ";
+  cin >> itemCode;
 
-  item.push_back(Item(name, description, productCode, price));
+  item.push_back(Item(name, description, itemCode, price));
   AddIngredientToItem(item[item.size() - 1], ingredient);
+}
+
+void Manager::DeleteItemFromStorage(vector<Item>& item) {
+  system("clear");
+  string input;
+  int index;
+  do{
+    for(int n = 0; n < item.size(); n++)
+      cout << n+1 << ". " << item[n].GetName() << endl;
+    cout << "Enter the item you want to delete(input 'x' to go back): ";
+    cin >> input;
+    index = atoi(input.c_str());
+    if(index > 0 && index <= item.size()) {
+      item[index - 1].NotifyDeletion();
+      system("clear");
+      cout << item[index - 1].GetName() << " successfully deleted!\n";
+      item.erase(item.begin() + index - 1);
+    }
+    if(input == "x") break;
+  }while(1);
+  system("clear");
 }
 
 void Manager::AddIngredientToItem(Item& item, vector<Ingredient>& ingredient)
@@ -269,74 +198,3 @@ void Manager::AddIngredientToItem(Item& item, vector<Ingredient>& ingredient)
       cout << "Invalid input\n";
   }while(1);
 }
-
-// void Manager::DelCategory()
-// {
-//   string name;
-//   PrintMenuNames();
-//   cout<<"Which menu do you want to delete:";
-//   cin.ignore();
-//   getline(cin, name);
-//
-//   for(int n = 0; n < _vAllItems.size(); n++)
-//   {
-//     if (menu)
-//     {
-//       if (_vAllItems[n]->getName() == name)
-//       {
-//         _vAllItems.erase(_vAllItems.begin() + n);
-//         break;
-//       }
-//     }
-//   }
-//   PrintMenuNames();
-// }
-
-// void Manager::AddItem()
-// {
-//   string name, description;
-//   char yn;
-//   double price;
-//   bool isVeg;
-//   cout << "Input new item name: ";
-//   cin.ignore();
-//   getline(cin, name);
-//
-//   cout << "Input item price: ";
-//   cin >> price;
-//
-//   cout << "Is it vegetarian? (y/n): ";
-//   cin >> yn;
-//   if (yn == 'y') isVeg == true;
-//   else isVeg == false;
-//
-//   cout << "Input new description: ";
-//   cin.ignore();
-//   getline(cin, description);
-//
-//   BaseMenu* newItem = new MenuItem(name, price, isVeg, description);
-//   _vAllItems.push_back(newItem);
-//   PrintAllItems();
-// }
-
-// void Manager::DelItem()
-// {
-//   PrintAllItems();
-//   string name;
-//   cout<<"Which item do you want to delete?:";
-//   cin.ignore();
-//   getline(cin, name);
-//   for(int n = 0; n < _vAllItems.size(); n++)
-//   {
-//     MenuItem* item = dynamic_cast<MenuItem*>(_vAllItems[n]);
-//     if (item)
-//     {
-//       if (_vAllItems[n]->getName() == name)
-//       {
-//         _vAllItems.erase(_vAllItems.begin() + n);
-//         break;
-//       }
-//     }
-//   }
-//   PrintAllItems();
-// }

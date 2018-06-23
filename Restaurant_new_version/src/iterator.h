@@ -1,21 +1,21 @@
 #ifndef ITERATOR_H
 #define ITERATOR_H
 
-template <class Item>
+template <class Object>
 class Iterator {
 public:
   virtual void first() = 0;
   virtual void next() = 0;
   virtual bool isDone() const = 0;
-  virtual Item currentItem() = 0;
+  virtual Object currentItem() = 0;
 };
 
-template <class Item>
-class NullIterator : public Iterator<Item> {
+template <class Object>
+class NullIterator : public Iterator<Object> {
 public:
   void first() {}
   void next() {}
   bool isDone() const {return true;}
-  Item currentItem() {return Item();}
+  Object currentItem() {return Object();}
 };
 #endif
