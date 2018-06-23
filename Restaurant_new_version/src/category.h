@@ -30,7 +30,7 @@ public:
 
   void ShowMenu(){
     for(int n = 0; n < _vItem.size(); n++){
-        std::cout << _vItem[n]->GetName() << " " <<_vItem[n]->GetDescription() << " " << _vItem[n]->GetPrice() << std::endl;
+        std::cout << _vItem[n]->GetProductCode() << " " << _vItem[n]->GetName() << " " <<_vItem[n]->GetDescription() << " " << _vItem[n]->GetPrice() << std::endl;
     }
   }
 

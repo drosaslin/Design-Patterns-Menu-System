@@ -43,8 +43,8 @@ public:
 
   }
 
-  Item(string name, string description, int price)
-  :Product(name, description), _price(price)
+  Item(string name, string description, string productCode, int price)
+  :Product(name, description, productCode), _price(price)
   {
 
   }
