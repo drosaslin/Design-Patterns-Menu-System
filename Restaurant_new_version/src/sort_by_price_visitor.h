@@ -12,7 +12,7 @@ using namespace std;
 class SortByPriceVisitor:public Visitor
 {
 public:
-  SortByPriceVisitor():_maxPrice(0)
+  SortByPriceVisitor():_maxPrice(0),_index(0)
   {
 
   }
@@ -26,20 +26,40 @@ public:
   }
   void visit(Category *c)
   {
-    Iterator<FullMenu *> *it = c->createIterator();
-    for (it->first();!it->isDone();it->next())
+    _temp.clear();
+    for (int i=0;i<c->GetSize();i++)
     {
-      if(it->currentItem()->GetName()==name)
+      _maxPrice = 0;
+      for (int j=0;j<c->GetSize();j++)
       {
-        _vItem.erase(it->currentItem());
-        break;
+        flag=false;
+        for (int k = 0; k<_temp.size();k++)
+        {
+          if (j==_temp[k])
+          {
+            flag=true;
+            break;
+          }
+        }
+        if (c->GetItem(j).GetPrice()>_maxPrice && !flag)
+        {
+          _maxPrice=c->GetItem(j)->GetPrice()
+          _index=j;
+        }
       }
+      _temp.push_back(_index);
+    }
+    for (int k = 0; k<_temp.size();k++)
+    {
+      cout<<c->GetItem(_temp[k])->GetName()<<"\t"<<c->GetItem(_temp[k])->GetPrice()<<endl;
     }
   }
 private:
+  int _index;
   double _maxPrice;
+  bool flag;
+  vector<int> _temp;
   vector<Category> _vCategory;
-  vector<Item *> _vItem, _result;
 };
 
 #endif

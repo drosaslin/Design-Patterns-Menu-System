@@ -114,7 +114,7 @@ public:
         <<"\t+                                      +"<<endl
         <<"\t++++++++++++++++++++++++++++++++++++++++"<<endl;
   }
-  
+
 private:
   vector<Ingredient> _vIngredient;
   vector<Item> _vItem;
