@@ -47,6 +47,17 @@ public:
     return (int)_vCategory.size();
   }
 
+  //READ!!!!!:不會編譯
+  // Iterator<Ingredient *>*createIterator()
+  // {
+  //   return new ItemIterator(this);
+  // }
+  //
+  // void accept(Visitor &v)
+  // {
+  //   v.visit(this);
+  // }
+
 private:
   std::vector<Category> _vCategory;
 };

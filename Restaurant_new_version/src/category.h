@@ -30,7 +30,7 @@ public:
 
   void ShowMenu(){
     for(int n = 0; n < _vItem.size(); n++){
-        std::cout << _vItem[n]->GetName() << " " <<_vItem[n]->GetDescription() << " " << _vItem[n]->GetPrice() << std::endl;
+      std::cout << _vItem[n]->GetProductCode() << " " << _vItem[n]->GetName() << " " <<_vItem[n]->GetDescription() << " " << _vItem[n]->GetPrice() << std::endl;
     }
   }
 
@@ -42,6 +42,17 @@ public:
   int GetSize() {
     return (int)_vItem.size();
   }
+
+  //READ!!!!! 不會編譯
+  // Iterator<FullMenu *>*createIterator()
+  // {
+  //   return new CategoryIterator(this);
+  // }
+  //
+  // void accept(Visitor &v)
+  // {
+  //   v.visit(this);
+  // }
 
 private:
   std::vector<Item*> _vItem;

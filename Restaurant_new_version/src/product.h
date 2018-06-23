@@ -9,8 +9,8 @@ public:
   {
   }
 
-  Product(std::string newName, std::string newDescription)
-    :_name(newName), _description(newDescription)
+  Product(std::string newName, std::string newDescription, std::string productCode)
+    :_name(newName), _description(newDescription), _productCode(productCode)
   {}
 
   std::string GetName() {
@@ -19,6 +19,10 @@ public:
 
   std::string GetDescription() {
     return _description;
+  }
+
+  std::string GetProductCode(){
+    return _productCode;
   }
 
   bool GetIsVegetarian() {
@@ -38,8 +42,7 @@ public:
   }
 
 private:
-  std::string _name;
-  std::string _description;
+  std::string _name, _description, _productCode;
   bool isVegetarian;
 };
 
