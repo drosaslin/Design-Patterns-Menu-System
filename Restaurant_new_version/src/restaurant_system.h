@@ -7,7 +7,7 @@
 #include "../src/product.h"
 #include "../src/item.h"
 #include "../src/ingredient.h"
-#include "../src/manager.h"
+#include "manager.h"
 #include <string>
 #include <iostream>
 #include <cstdlib>
@@ -19,14 +19,14 @@ using namespace std;
 class RestaurantSystem {
 public:
   RestaurantSystem() {
-    _vIngredient.push_back(Ingredient("Meat", "delicious meat", 0.2, 0.13, 0.16, 0.24, false));
-    _vIngredient.push_back(Ingredient("Tomato", "delicious bread", 0.2, 0.13, 0.16, 0.24, true));
-    _vIngredient.push_back(Ingredient("Spaghetti", "delicious bread", 0.2, 0.13, 0.16, 0.24, true));
-    _vIngredient.push_back(Ingredient("Onion", "delicious bread", 0.20, 0.13, 0.16, 0.24, true));
-    _vIngredient.push_back(Ingredient("Water", "delicious water", 0.2, 0.13, 0.16, 0.24, false));
-    _vIngredient.push_back(Ingredient("Shrimp", "delicious shrimp", 0.2, 0.13, 0.16, 0.24, true));
-    _vIngredient.push_back(Ingredient("Cheese", "delicious cheese", 0.2, 0.13, 0.16, 0.24, true));
-    _vIngredient.push_back(Ingredient("Mushroom", "delicious mushroom", 0.20, 0.13, 0.16, 0.24, true));
+    _vIngredient.push_back(Ingredient("Meat", 0.2, 0.13, 0.16, 0.24, false));
+    _vIngredient.push_back(Ingredient("Tomato", 0.2, 0.13, 0.16, 0.24, true));
+    _vIngredient.push_back(Ingredient("Spaghetti", 0.2, 0.13, 0.16, 0.24, true));
+    _vIngredient.push_back(Ingredient("Onion", 0.20, 0.13, 0.16, 0.24, true));
+    _vIngredient.push_back(Ingredient("Water", 0.2, 0.13, 0.16, 0.24, false));
+    _vIngredient.push_back(Ingredient("Shrimp",  0.2, 0.13, 0.16, 0.24, true));
+    _vIngredient.push_back(Ingredient("Cheese",  0.2, 0.13, 0.16, 0.24, true));
+    _vIngredient.push_back(Ingredient("Mushroom", 0.20, 0.13, 0.16, 0.24, true));
     _vItem.push_back(Item("Hamburger", "delicious hamburger", 10));
     _vItem[0].AddIngredient(&_vIngredient[0]);
     _vItem[0].AddIngredient(&_vIngredient[1]);
@@ -114,8 +114,7 @@ public:
         <<"\t+                                      +"<<endl
         <<"\t++++++++++++++++++++++++++++++++++++++++"<<endl;
   }
-
-
+  
 private:
   vector<Ingredient> _vIngredient;
   vector<Item> _vItem;

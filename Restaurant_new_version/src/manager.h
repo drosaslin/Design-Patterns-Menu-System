@@ -14,7 +14,7 @@ class Manager
 {
 public:
   Manager();
-  Manager(string,string);
+  Manager(string name,string number);
   void PrintOperations();
   void AddCategory(FullMenu& menu);
   void DelCategory(FullMenu& menu);
