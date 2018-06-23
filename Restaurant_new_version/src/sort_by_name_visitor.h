@@ -1,22 +1,22 @@
-#ifndef SORT_BY_PRICE_VISITOR_H
-#define SORT_BY_PRICE_VISITOR_H
+#ifndef SORT_BY_NAME_VISITOR_H
+#define SORT_BY_NAME_VISITOR_H
 
 #include <vector>
-#include "iterator.h"
+#include <string>
 #include "menu.h"
-#include "category.h"
 #include "full_menu.h"
-// class Item;
-// class Menu;
-// class Category;
-// class FullMenu;
+#include "category.h"
+#include "iterator.h"
+class Menu;
+class FullMenu;
+class Category;
 
 using namespace std;
 
-class SortByPriceVisitor : public Visitor
+class SortByNameVisitor:public Visitor
 {
 public:
-  SortByPriceVisitor()
+  SortByNameVisitor()
   {
   }
   void visit(FullMenu *fm)
@@ -50,7 +50,7 @@ public:
     {
       for(int i = 1; i < size - n; i++)
       {
-        if(items[i - 1].GetPrice() > items[i].GetPrice())
+        if(items[i].GetName().compare(items[i-1].GetName()) < 0)
           Swap(i-1, i);
       }
     }

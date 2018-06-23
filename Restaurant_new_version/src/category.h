@@ -3,13 +3,13 @@
 
 #include "menu.h"
 #include "item.h"
-#include "visitor.h"
-//#include "sort_by_price_visitor.h"
-// #include "sort_by_calorie_visitor.h"
-#include <string>
-#include <vector>
+// //#include "visitor.h"
+// //#include "sort_by_price_visitor.h"
+// // #include "sort_by_calorie_visitor.h"
+// #include <string>
+// #include <vector>
 
-class Category : public Menu{
+class Category : public Menu {
 public:
   class CategoryIterator : public Iterator<Item>
   {
@@ -39,56 +39,25 @@ public:
     vector<Item>::iterator _current;
   };
 
-  Category(){}
+  Category();
 
-  Category(std::string name, std::string description)
-    :Menu(name, description)
-  {
-  }
+  Category(std::string name, std::string description);
 
-  void AddItem(Item *item){
-    _vItem.push_back(*item);
-    item->AddObserver(this);
-  }
+  void AddItem(Item *item);
 
-  void DelItem(std::string name){
-    for(int n = 0; n < _vItem.size(); n++){
-      if (_vItem[n].GetName() == name){
-        //cout << _vItem[n].GetName() << "deleted\n";
-        _vItem.erase(_vItem.begin()+n);
-        return;
-      }
-    }
-  }
+  void DelItem(std::string name);
 
-  void ShowMenu(){
-    Iterator<Item>* it = createIterator();
-    for(it->first(); !it->isDone(); it->next()) {
-      std::cout << it->currentItem().GetProductCode() << " " << it->currentItem().GetName() << "     " << it->currentItem().GetDescription() << "    " << fixed << setprecision(2) << it->currentItem().GetPrice() << std::endl;
-    }
-  }
+  void ShowMenu();
 
-  void update(string itemName) {
-      DelItem(itemName);
-  }
+  void update(string itemName);
 
-  Item GetItem(int index) {
-    if(index >= 0 && index <= _vItem.size())
-      return _vItem[index];
-  }
+  Item GetItem(int index);
 
-  int GetSize() {
-    return (int)_vItem.size();
-  }
+  int GetSize();
 
-  Iterator<Item>* createIterator() {
-    return new CategoryIterator(this);
-  }
+  Iterator<Item>* createIterator();
 
-  // void accept(Visitor &v)
-  // {
-  //   v.visit(this);
-  // }
+  void accept(Visitor &v);
 
 private:
   std::vector<Item> _vItem;

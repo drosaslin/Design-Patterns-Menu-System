@@ -32,6 +32,7 @@ private:
   void DeleteItemFromStorage(vector<Item>& item);
   void DeleteItemFromCategory(FullMenu& menu);
   void AddIngredientToItem(Item& item, vector<Ingredient>& ingredient);
+  void CallVisitor(FullMenu& menu, string command);
   bool IsItemNameRepeated(vector<Item>& item, string name);
   bool IsItemCodeRepeated(vector<Item>& item, string code);
   bool IsCategoryRepeated(FullMenu& menu, string name);

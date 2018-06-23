@@ -2,38 +2,31 @@
 #define MENU_H
 
 #include <string>
+class Visitor;
+class SortByPriceVisitor;
+
+using namespace std;
 
 class Menu {
 public:
-  Menu(){}
+  Menu();
+  Menu(std::string newName, std::string newDescription);
 
-  Menu(std::string newName, std::string newDescription)
-    :_name(newName), _description(newDescription)
-  {}
+  std::string GetName();
 
-  std::string GetName() {
-    return _name;
-  }
+  std::string GetDescription();
 
-  std::string GetDescription() {
-    return _description;
-  }
+  void SetName(std::string newName);
 
-  void SetName(std::string newName) {
-    _name = newName;
-  }
+  void SetDescription(std::string newDescription);
 
-  void SetDescription(std::string newDescription) {
-    _description = newDescription;
-  }
+  virtual void update(std::string itemName);
 
-  virtual void update(std::string itemName){
-  }
+  virtual void accept(Visitor &v);
 
 private:
   std::string _name;
   std::string _description;
-
 };
 
 #endif

@@ -1,111 +1,79 @@
-#ifndef ITEM_H
-#define ITEM_H
 #include <iostream>
 #include <string>
 #include <vector>
 #include <iomanip>
+#include "item.h"
 #include "ingredient.h"
 #include "iterator.h"
 #include "menu.h"
 #include "category.h"
-class Menu;
 
 using namespace std;
 
-class Item : public Product
-{
 public:
-  class ItemIterator : public Iterator<Ingredient*>
-  {
-  public:
-    ItemIterator(Item *it)
-    {
-      _item=it;
-    }
-    void first()
-    {
-      _current = _item->_vIngredient.begin();
-    }
-    void next()
-    {
-      ++_current;
-    }
-    bool isDone()const
-    {
-      return (_current == _item->_vIngredient.end());
-    }
-    Ingredient* currentItem()
-    {
-      return *_current;
-    }
-  private:
-    Item *_item;
-    vector<Ingredient *>::iterator _current;
-  };
-
-  Item()
+  Item::Item()
   {
   }
 
-  Item(string name, string description, string productCode, double price)
+  Item::Item(string name, string description, string productCode, double price)
     :Product(name, description, productCode), _price(price)
   {
 
   }
 
-  Iterator<Ingredient *>*createIterator()
+  Iterator<Ingredient *>* Item::createIterator()
   {
     return new ItemIterator(this);
   }
-  void SetPrice(double price)
+  void Item::SetPrice(double price)
   {
     _price = price;
   }
-  void SetIsVegetarian(bool flag)
+  void Item::SetIsVegetarian(bool flag)
   {
     _isVegetarian = flag;
   }
-  void SetProtein(double num)
+  void Item::SetProtein(double num)
   {
     _perProtein = num;
   }
-  double SetFat(double num)
+  double Item::SetFat(double num)
   {
     _perFat = num;
   }
-  double SetCarbohydrates(double num)
+  double Item::SetCarbohydrates(double num)
   {
     _perCarbonhydrates = num;
   }
-  double GetPrice()
+  double Item::GetPrice()
   {
     return _price;
   }
-  bool IsVegetarian()
+  bool Item::IsVegetarian()
   {
     return _isVegetarian;
   }
-  double GetProtein()
+  double Item::GetProtein()
   {
     return _weight * _perProtein;
   }
-  double GetFat()
+  double Item::GetFat()
   {
     return _weight * _perFat;
   }
-  double GetCarbohydrates()
+  double Item::GetCarbohydrates()
   {
     return _weight * _perCarbonhydrates;
   }
-  double GetCalorie()
+  double Item::GetCalorie()
   {
     return (GetProtein() + GetCarbohydrates()) * 4000 + GetFat() * 9000;
   }
-  double GetWeight()
+  double Item::GetWeight()
   {
     return _weight;
   }
-  void AddIngredient(Ingredient *ingredient)
+  void Item::AddIngredient(Ingredient *ingredient)
   {
     _vIngredient.push_back(ingredient);
   }
@@ -121,7 +89,7 @@ public:
   //     }
   //   }
   // }
-  Ingredient* GetItem(string name)
+  Ingredient* Item::GetItem(string name)
   {
     Iterator<Ingredient *> *it = createIterator();
     for (it->first();!it->isDone();it->next()) {
@@ -131,12 +99,12 @@ public:
     return nullptr;
   }
 
-  void AddObserver(Menu* cat) {
+  void Item::AddObserver(Menu* cat) {
     _observers.push_back(cat);
     //cout << GetName() << " observer" << cat->GetName() << endl;
   }
 
-  void NotifyDeletion() {
+  void Item::NotifyDeletion() {
     //cout << "notiying" << _observers[0]->GetName() << endl;
     for(int n = _observers.size() - 1; n >= 0; n--) {
       _observers[n]->update(GetName());
@@ -144,13 +112,4 @@ public:
     }
     //cout << "notified" << endl;
   }
-
-private:
-  string _name, _description;
-  double _price, _perProtein, _perFat, _perCarbonhydrates, _weight;
-  bool _isVegetarian;
-  vector<Ingredient*> _vIngredient;
-  vector<Menu*> _observers;
-};
-
-#endif
+;

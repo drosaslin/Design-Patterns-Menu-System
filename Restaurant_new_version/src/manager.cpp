@@ -2,6 +2,9 @@
 #include <cstdlib>
 #include <string>
 #include "manager.h"
+#include "visitor.h"
+#include "sort_by_price_visitor.h"
+#include "sort_by_name_visitor.h"
 using namespace std;
 
 Manager::Manager():_name("Manager"), _number("1"){
@@ -35,14 +38,28 @@ void Manager::MenuOptions(FullMenu& fullMenu) {
   int index;
   do {
     cout << "1. Order items by price" << endl
-        << "2. Order items by calories" << endl
+        << "2. Order items by name" << endl
         << "3. Go back" << endl;
     cout << "choose command: ";
     cin >> input;
     if(input != "1" && input != "2" && input != "3")
-    cout << "Invalid input, please try again\n";
+      cout << "Invalid input, please try again\n";
+    else CallVisitor(fullMenu, input);
   }while(input != "3");
   system("clear");
+}
+
+void Manager::CallVisitor(FullMenu& menu, string command) {
+  if(command == "1") {
+    system("clear");
+    Visitor *v = new SortByPriceVisitor();
+    menu.accept(*v);
+  }
+  if(command == "2"){
+    system("clear");
+    Visitor *v = new SortByNameVisitor();
+    menu.accept(*v);
+  }
 }
 
 void Manager::AddCategory(FullMenu& menu)

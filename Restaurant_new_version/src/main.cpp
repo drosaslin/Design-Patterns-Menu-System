@@ -3,7 +3,6 @@
 #include <string>
 #include <stdlib.h>
 #include "restaurant_system.h"
-#include "manager.h"
 using namespace std;
 
 void LoginMenu();

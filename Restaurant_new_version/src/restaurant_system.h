@@ -1,7 +1,7 @@
 #ifndef RESTAURANT_SYSTEM_H
 #define RESTAURANT_SYSTEM_H
 
-#include "../src/menu.h"
+//#include "../src/menu.h"
 #include "../src/category.h"
 #include "../src/full_menu.h"
 #include "../src/product.h"
@@ -28,33 +28,33 @@ public:
     _vIngredient.push_back(Ingredient("Shrimp",  0.2, 0.13, 0.16, 0.24, true));
     _vIngredient.push_back(Ingredient("Cheese",  0.2, 0.13, 0.16, 0.24, true));
     _vIngredient.push_back(Ingredient("Mushroom", 0.20, 0.13, 0.16, 0.24, true));
-    _vItem.push_back(Item("Hamburger", "delicious hamburger", "H01", 10));
+    _vItem.push_back(Item("Hamburger", "delicious hamburger", "H01", 10.50));
     _vItem[0].AddIngredient(&_vIngredient[0]);
     _vItem[0].AddIngredient(&_vIngredient[1]);
     _vItem[0].AddIngredient(&_vIngredient[3]);
-    _vItem.push_back(Item("Cheeseburger", "delicious cheeseburger", "H02",10));
+    _vItem.push_back(Item("Cheeseburger", "delicious cheeseburger", "H02",8.00));
     _vItem[0].AddIngredient(&_vIngredient[0]);
     _vItem[0].AddIngredient(&_vIngredient[6]);
     _vItem[0].AddIngredient(&_vIngredient[1]);
     _vItem[0].AddIngredient(&_vIngredient[3]);
-    _vItem.push_back(Item("Mushroom burger", "delicious shroomburger", "H03", 10));
+    _vItem.push_back(Item("Mushroom burger", "delicious shroomburger", "H03", 10.00));
     _vItem[0].AddIngredient(&_vIngredient[0]);
     _vItem[0].AddIngredient(&_vIngredient[6]);
     _vItem[0].AddIngredient(&_vIngredient[1]);
     _vItem[0].AddIngredient(&_vIngredient[7]);
     _vItem[0].AddIngredient(&_vIngredient[3]);
-    _vItem.push_back(Item("Carbonara", "delicious carbonara", "P01", 10));
+    _vItem.push_back(Item("Carbonara", "delicious carbonara", "P01", 6.90));
     _vItem[1].AddIngredient(&_vIngredient[0]);
     _vItem[1].AddIngredient(&_vIngredient[1]);
     _vItem[1].AddIngredient(&_vIngredient[2]);
     _vItem[1].AddIngredient(&_vIngredient[6]);
-    _vItem.push_back(Item("Spaghetti and Mushrooms", "delicious carbonara", "P02", 10));
+    _vItem.push_back(Item("Spaghetti and Mushrooms", "delicious carbonara", "P02", 9.00));
     _vItem[1].AddIngredient(&_vIngredient[0]);
     _vItem[1].AddIngredient(&_vIngredient[1]);
     _vItem[1].AddIngredient(&_vIngredient[2]);
     _vItem[1].AddIngredient(&_vIngredient[7]);
-    _vItem.push_back(Item("Brownie", "delicious brownie", "D01", 10));
-    _vItem.push_back(Item("Cheese Cake", "delicious cheese cake", "D02", 10));
+    _vItem.push_back(Item("Brownie", "delicious brownie", "D01", 6.25));
+    _vItem.push_back(Item("Cheese Cake", "delicious cheese cake", "D02", 5.50));
     _vCategory.push_back(Category("Hamburgers", "delicious hamburgers"));
     _vCategory.push_back(Category("Pasta", "delicious pasta"));
     _vCategory.push_back(Category("Desserts", "delicious desserts"));
@@ -112,7 +112,8 @@ public:
        {
          if (command == "1")
          {
-           fullMenu.ShowMenu();
+           system("clear");
+           customer.MenuOptions(fullMenu);
          }
          else if (command=="2")
          {

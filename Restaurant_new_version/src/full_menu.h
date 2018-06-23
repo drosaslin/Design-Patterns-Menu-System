@@ -6,7 +6,7 @@
 #include "iterator.h"
 //#include "sort_by_price_visitor.h"
 // #include "sort_by_calorie_visitor.h"
-#include "visitor.h"
+//#include "visitor.h"
 #include <string>
 #include <vector>
 
@@ -40,62 +40,25 @@ public:
     vector<Category>::iterator _current;
   };
 
-  FullMenu(){
-  }
+  FullMenu();
 
-  FullMenu(string name, string description)
-    :Menu(name, description)
-  {
-  }
+  FullMenu(string name, string description);
 
-  void AddCategory(Category& cat){
-    _vCategory.push_back(cat);
-  }
+  void AddCategory(Category& cat);
 
-  void DelCategory(string name){
-    for(int n = 0; n < _vCategory.size(); n++){
-      if (_vCategory[n].GetName() == name){
-        _vCategory.erase(_vCategory.begin()+n);
-        return;
-      }
-    }
-  }
+  void DelCategory(string name);
 
-  void DisplayCategories() {
-    int n;
-    Iterator<Category>* it = createIterator();
-    for(n = 1, it->first(); !it->isDone(); it->next(), n++) {
-      cout << n << ". " << it->currentItem().GetName() << endl;
-    }
-  }
+  void DisplayCategories();
 
-  void ShowMenu(){
-    Iterator<Category>* it = createIterator();
-    std::cout << GetName() << std::endl;
-    for(it->first(); !it->isDone(); it->next()) {
-      std::cout << std::endl << it->currentItem().GetName() << std::endl;
-      it->currentItem().ShowMenu();
-    }
-  }
+  void ShowMenu();
 
-  Category& GetCategory(int index) {
-    if(index >= 0 && index <= _vCategory.size())
-      return _vCategory[index];
-  }
+  Category& GetCategory(int index);
 
-  int GetSize() {
-    return (int)_vCategory.size();
-  }
+  int GetSize();
 
-  Iterator<Category>* createIterator()
-  {
-    return new FullMenuIterator(this);
-  }
+  Iterator<Category>* createIterator();
 
-  // void accept(Visitor &v)
-  // {
-  //   v.visit(this);
-  // }
+  void accept(Visitor &v);
 
 private:
   std::vector<Category> _vCategory;
