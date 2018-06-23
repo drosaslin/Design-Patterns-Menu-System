@@ -3,6 +3,7 @@
 #include <string>
 #include <stdlib.h>
 #include "restaurant_system.h"
+#include "manager.h"
 using namespace std;
 
 void LoginMenu();
@@ -40,7 +41,7 @@ int main()
   }while(1);
 
   return 0;
-};
+}
 
 void LoginMenu()
 {
