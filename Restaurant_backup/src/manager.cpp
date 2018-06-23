@@ -132,15 +132,17 @@ void Manager::ManageStorage(vector<Item>& item, vector<Ingredient>& ingredient)
 void Manager::CreateItem(vector<Item>& item, vector<Ingredient>& ingredient)
 {
   double price;
-  string name, description;
+  string name, description, itemCode;
   cout << "Enter the item's name: ";
   getline(cin, name);
   cout << "Enter the item's description: ";
   getline(cin, description);
   cout << "Enter the item's price: ";
   cin >> price;
+  cout << "Enter the item's code: ";
+  cin >> itemCode;
 
-  item.push_back(Item(name, description, price));
+  item.push_back(Item(name, description, itemCode, price));
   AddIngredientToItem(item[item.size() - 1], ingredient);
 }
 

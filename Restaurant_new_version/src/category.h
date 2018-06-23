@@ -6,8 +6,6 @@
 #include <string>
 #include <vector>
 
-using namespace std;
-
 class Category : public Menu{
 public:
   class CategoryIterator : public Iterator<Item>
@@ -45,13 +43,6 @@ public:
   {
   }
 
-  //READ!!!!! 不會編譯
- Iterator<Item>* createIterator()
-  {
-     return new CategoryIterator(this);
-  }
-
-
   void AddItem(Item *item){
     _vItem.push_back(*item);
     item->AddObserver(this);
@@ -70,12 +61,9 @@ public:
   void ShowMenu(){
     cout << endl;
     Iterator<Item>* it = createIterator();
-    // for(it->first(); !it->isDone(); it->next()) {
-    //   std::cout << GetName() << " " << it->currentItem().GetName() << " " << it->currentItem().GetDescription() << " " << it->currentItem().GetPrice() << std::endl;
-    // }
-    for(int n = 0; n < _vItem.size(); n++){
-      std::cout << GetName() << " " << _vItem[n].GetName() << " " << _vItem[n].GetDescription() << " " << _vItem[n].GetPrice() << std::endl;
-      }
+    for(it->first(); !it->isDone(); it->next()) {
+      std::cout << it->currentItem().GetProductCode() << " " << it->currentItem().GetName() << " " << it->currentItem().GetDescription() << " " << it->currentItem().GetPrice() << std::endl;
+    }
   }
 
   void update(string itemName) {
@@ -114,14 +102,12 @@ public:
     return (int)_vItem.size();
   }
 
-  void accept(Visitor &v)
-  {
-    v.visit(this);
+  Iterator<Item>* createIterator() {
+    return new CategoryIterator(this);
   }
 
 private:
-  std::vector<Item*> _vItem;
-  std::vector<Menu *> _vMenu;
+  std::vector<Item> _vItem;
 };
 
 #endif

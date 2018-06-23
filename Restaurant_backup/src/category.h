@@ -61,12 +61,9 @@ public:
   void ShowMenu(){
     cout << endl;
     Iterator<Item>* it = createIterator();
-    // for(it->first(); !it->isDone(); it->next()) {
-    //   std::cout << GetName() << " " << it->currentItem().GetName() << " " << it->currentItem().GetDescription() << " " << it->currentItem().GetPrice() << std::endl;
-    // }
-    for(int n = 0; n < _vItem.size(); n++){
-      std::cout << GetName() << " " << _vItem[n].GetName() << " " << _vItem[n].GetDescription() << " " << _vItem[n].GetPrice() << std::endl;
-      }
+    for(it->first(); !it->isDone(); it->next()) {
+      std::cout << it->currentItem().GetProductCode() << " " << it->currentItem().GetName() << " " << it->currentItem().GetDescription() << " " << it->currentItem().GetPrice() << std::endl;
+    }
   }
 
   void update(string itemName) {
@@ -107,6 +104,11 @@ public:
 
   Iterator<Item>* createIterator() {
     return new CategoryIterator(this);
+  }
+
+  void accept(Visitor &v)
+  {
+    v.visit(this);
   }
 
 private:

@@ -97,6 +97,11 @@ public:
     return new FullMenuIterator(this);
   }
 
+  void accept(Visitor &v)
+  {
+    v.visit(this);
+  }
+
 private:
   std::vector<Category> _vCategory;
 };

@@ -7,28 +7,28 @@
 
 using namespace std;
 
-// TEST(MenuIteratorTest, Iterator){
-//   vector<Category> _vCategory;
-//   FullMenu fullMenu;
-//   _vCategory.push_back(Category("Hamburgers", "delicious hamburgers"));
-//   _vCategory.push_back(Category("Pasta", "delicious pasta"));
-//   _vCategory.push_back(Category("Desserts", "delicious desserts"));
-//   for(int n = 0; n < _vCategory.size(); n++) {
-//     fullMenu.AddCategory(_vCategory[n]);
-//   }
-//
-//   Iterator<Category>* it = fullMenu.createIterator();
-//   for(it->first(); !it->isDone(); it->next())
-//     cout << it->currentItem().GetName() << endl;
-//
-//   for(it->first(); !it->isDone(); it->next()) {
-//     it->currentItem().SetName("Change");
-//     cout << it->currentItem().GetName() << endl;
-//   }
-//
-//   for(it->first(); !it->isDone(); it->next())
-//     cout << it->currentItem().GetName() << endl;
-// }
+TEST(MenuIteratorTest, Iterator){
+  vector<Category> _vCategory;
+  FullMenu fullMenu;
+  _vCategory.push_back(Category("Hamburgers", "delicious hamburgers"));
+  _vCategory.push_back(Category("Pasta", "delicious pasta"));
+  _vCategory.push_back(Category("Desserts", "delicious desserts"));
+  for(int n = 0; n < _vCategory.size(); n++) {
+    fullMenu.AddCategory(_vCategory[n]);
+  }
+
+  Iterator<Category>* it = fullMenu.createIterator();
+  for(it->first(); !it->isDone(); it->next())
+    cout << it->currentItem().GetName() << endl;
+
+  for(it->first(); !it->isDone(); it->next()) {
+    it->currentItem().SetName("Change");
+    cout << it->currentItem().GetName() << endl;
+  }
+
+  for(it->first(); !it->isDone(); it->next())
+    cout << it->currentItem().GetName() << endl;
+}
 
 //class MenuIteratorTest : public ::testing::Test{
 

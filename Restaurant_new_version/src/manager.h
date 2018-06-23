@@ -4,6 +4,7 @@
 #include <cstdlib>
 #include <string>
 #include <regex>
+#include "full_menu.h"
 #include "iterator.h"
 #include "full_menu.h"
 #include "category.h"

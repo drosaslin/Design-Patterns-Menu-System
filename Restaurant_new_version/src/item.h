@@ -6,7 +6,7 @@
 #include "ingredient.h"
 #include "iterator.h"
 #include "menu.h"
-//#include "category.h"
+#include "category.h"
 class Category;
 
 using namespace std;
@@ -47,15 +47,11 @@ public:
   }
 
   Item(string name, string description, string productCode, int price)
-  :Product(name, description, productCode), _price(price)
+    :Product(name, description, productCode), _price(price)
   {
 
   }
-  // Item()
-  // :Ingredient(name), _price(price), _perProtein(num1), _perFat(num2), _perCarbonhydratesr(num3), _weight(w)
-  // {
-  //
-  // }
+
   Iterator<Ingredient *>*createIterator()
   {
     return new ItemIterator(this);
@@ -145,7 +141,6 @@ public:
       _observers[n]->update(GetName());
       _observers.erase(_observers.begin() + n);
     }
-
     cout << "notified" << endl;
   }
 
