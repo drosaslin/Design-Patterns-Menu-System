@@ -112,9 +112,12 @@ public:
        if (regex_match(command,com))
        {
          if (command == "1")
-           fullMenu.ShowMenu();
+          fullMenu.ShowMenu();
          else if (command=="2")
-           customer.OrderMenu();
+         {
+           fullMenu.ShowMenu();
+           customer.OrderMenu(_vCategory);
+         }
          else if (command=="3")
            break;
        }
@@ -133,7 +136,7 @@ public:
         <<"\t+     4. Modify Categories             +"<<endl
         <<"\t+     5. Manage Storage                +"<<endl
         <<"\t+     6. Delete Item                   +"<<endl
-        <<"\t+     7. Exit                          +"<<endl
+        <<"\t+     7. Go back                       +"<<endl
         <<"\t+                                      +"<<endl
         <<"\t++++++++++++++++++++++++++++++++++++++++"<<endl;
   }
@@ -144,7 +147,7 @@ public:
           <<"\t+     Welcome to the Customer System   +"<<endl
           <<"\t+     1. Display Menu                  +"<<endl
           <<"\t+     2. Order                         +"<<endl
-          <<"\t+     3. Exit                          +"<<endl
+          <<"\t+     3. Go back                       +"<<endl
           <<"\t+                                      +"<<endl
           <<"\t++++++++++++++++++++++++++++++++++++++++"<<endl;
     }

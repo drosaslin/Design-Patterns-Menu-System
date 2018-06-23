@@ -23,6 +23,7 @@ int main()
     if(input=="1")
     {
       system("clear");
+      restaurantSystem.CustomerOperations();
     }
     else if(input=="2")
     {
