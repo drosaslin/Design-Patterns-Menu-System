@@ -3,6 +3,7 @@
 #include <iostream>
 #include <string>
 #include "product.h"
+
 using namespace std;
 
 class Ingredient

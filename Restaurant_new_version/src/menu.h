@@ -2,6 +2,9 @@
 #define MENU_H
 
 #include <string>
+#include "visitor.h"
+
+using namespace std;
 
 class Menu {
 public:
@@ -25,6 +28,12 @@ public:
 
   void SetDescription(std::string newDescription) {
     _description = newDescription;
+  }
+
+  virtual void update(std::string itemName){
+
+  virtual void accept(Visitor &v)
+  {
   }
 
 private:
