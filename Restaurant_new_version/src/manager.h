@@ -16,6 +16,7 @@ public:
   Manager();
   Manager(string name,string number);
   void PrintOperations();
+  void MenuOptions(FullMenu& menu);
   void AddCategory(FullMenu& menu);
   void AddCategory(FullMenu& menu, Category& newCat);
   void AddItemToCategory(FullMenu& menu, vector<Item>& item, int catIndex, int itemIndex);
@@ -31,5 +32,8 @@ private:
   void DeleteItemFromStorage(vector<Item>& item);
   void DeleteItemFromCategory(FullMenu& menu);
   void AddIngredientToItem(Item& item, vector<Ingredient>& ingredient);
+  bool IsItemNameRepeated(vector<Item>& item, string name);
+  bool IsItemCodeRepeated(vector<Item>& item, string code);
+  bool IsCategoryRepeated(FullMenu& menu, string name);
 };
 #endif

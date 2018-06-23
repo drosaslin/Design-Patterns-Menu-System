@@ -47,7 +47,7 @@ public:
   {
   }
 
-  Item(string name, string description, string productCode, int price)
+  Item(string name, string description, string productCode, double price)
     :Product(name, description, productCode), _price(price)
   {
 

@@ -27,18 +27,41 @@ void Manager::PrintOperations()
       <<"\t++++++++++++++++++++++++++++++++++++++++"<<endl;
 }
 
+void Manager::MenuOptions(FullMenu& fullMenu) {
+  system("clear");
+  fullMenu.ShowMenu();
+  cout << endl;
+  string input;
+  int index;
+  do {
+    cout << "1. Order items by price" << endl
+        << "2. Order items by calories" << endl
+        << "3. Go back" << endl;
+    cout << "choose command: ";
+    cin >> input;
+    if(input != "1" && input != "2" && input != "3")
+    cout << "Invalid input, please try again\n";
+  }while(input != "3");
+  system("clear");
+}
+
 void Manager::AddCategory(FullMenu& menu)
 {
   string name, description;
-  cout<<"Please input category name:";
-  cin.ignore();
-  getline(cin, name);
+  do {
+    cout<<"Please input category name(input 'x' to cancel):";
+    cin.ignore();
+    getline(cin, name);
+  }while(IsCategoryRepeated(menu, name) && name != "x");
+  if(name == "x") return;
 
   cout<<"Please input category description:";
   cin.ignore();
   getline(cin, description);
   Category newCat(name, description);
   menu.AddCategory(newCat);
+  system("clear");
+  cout << name << " successfully added!\n";
 }
 
 void Manager::AddCategory(FullMenu& menu, Category& newCat)
@@ -69,35 +92,56 @@ void Manager::DelCategory(FullMenu& menu)
 void Manager::ModifyCategory(FullMenu& menu, vector<Item>& item)
 {
   string command;
-  cout << "1. Add items to category" << endl << "2. Delete items from category" << endl << endl;
+  cout << "1. Add items to category" << endl << "2. Delete items from category" << endl << "3. Go back\n\n";
   cout << "Please choose your command: ";
   cin.ignore();
-  getline(cin, command);
-  if(command == "1")
-    AddItemToCategory(menu, item);
-  if(command == "2")
-    DeleteItemFromCategory(menu);
+  do{
+    getline(cin, command);
+    if(command == "1")
+      AddItemToCategory(menu, item);
+    else if(command == "2")
+      DeleteItemFromCategory(menu);
+    else if(command == "3")
+      return;
+    else
+      cout << "invalid input, please try again\n";
+  }while(command != "1" && command != "2" && command != "3");
 }
 
 void Manager::AddItemToCategory(FullMenu& menu, vector<Item>& item)
 {
+    string input;
     int category;
     cout << endl;
     for(int n = 0; n < menu.GetSize(); n++) {
       cout << n + 1 << ". " << menu.GetCategory(n).GetName() << endl;
     }
-    cout << "Choose category: ";
-    cin >> category;
+    do{
+      cout << "Choose category(input 'x' to cancel): ";
+      cin >> input;
+      category = atoi(input.c_str());
+      if(category > 0 && category <= menu.GetSize() || input == "x") break;
+      else cout << "invalid input, please try again\n";
+    }while(1);
+    if(input == "x") return;
 
     cout << endl;
     int itemChosen;
     for(int n = 0; n < item.size(); n++) {
       cout << n + 1 << ". " << item[n].GetName() << endl;
     }
-    cout << "Choose item to add: ";
-    cin >> itemChosen;
-
-    menu.GetCategory(category - 1).AddItem(&item[itemChosen - 1]);
+    do {
+      cout << "Choose item to add(input 'x' to cancel): ";
+      cin >> input;
+      itemChosen = atoi(input.c_str());
+      if(itemChosen > 0 && itemChosen <= item.size()) {
+        menu.GetCategory(category - 1).AddItem(&item[itemChosen - 1]);
+        cout << item[itemChosen - 1].GetName() << " added\n";
+      }
+      else if(input != "x")
+        cout << "invalid input, please try again\n";
+    }while(input != "x");
+    system("clear");
 }
 
 void Manager::AddItemToCategory(FullMenu& menu, vector<Item>& item, int catIndex, int itemIndex)
@@ -132,28 +176,81 @@ void Manager::ManageStorage(vector<Item>& item, vector<Ingredient>& ingredient)
   cout << "\n1. Create new item" << endl << "2. Delete item" << endl;
   cout << "Please choose your command: ";
   cin.ignore();
+  do{
   getline(cin, command);
   if(command == "1")
     CreateItem(item, ingredient);
-  if(command == "2")
+  else if(command == "2")
     DeleteItemFromStorage(item);
+  else if(command == "3")
+    return;
+  else
+    cout << "invalid input, please try again\n";
+  }while(command != "1" && command != "2" && command != "3");
 }
 
 void Manager::CreateItem(vector<Item>& item, vector<Ingredient>& ingredient)
 {
+  system("clear");
   double price;
-  string name, description, itemCode;
-  cout << "Enter the item's name: ";
-  getline(cin, name);
-  cout << "Enter the item's description: ";
+  string name, description, itemCode, priceInput;
+  do{
+  cout << "Enter the item's name(input 'x' to cancel): ";
+    getline(cin, name);
+  }while(IsItemNameRepeated(item, name) && name != "x");
+  if(name == "x") return;
+
+  cout << "Enter the item's description(input 'x' to cancel): ";
   getline(cin, description);
-  cout << "Enter the item's price: ";
-  cin >> price;
-  cout << "Enter the item's code: ";
-  cin >> itemCode;
+  if(description == "x") return;
+
+  do{
+    cout << "Enter the item's price(input 'x' to cancel): ";
+    getline(cin, priceInput);
+    price = atof(priceInput.c_str());
+  }while(price < 0 && priceInput != "x");
+  if(priceInput == "x") return;
+
+  do{
+    cout << "Enter the item's code: ";
+    cin >> itemCode;
+  }while(IsItemCodeRepeated(item, itemCode));
 
   item.push_back(Item(name, description, itemCode, price));
   AddIngredientToItem(item[item.size() - 1], ingredient);
+  system("clear");
+  cout << name << " successfully created!\n";
+}
+
+bool Manager::IsItemNameRepeated(vector<Item>& item, string name) {
+  for(int n = item.size() - 1; n >= 0; n--) {
+    if(item[n].GetName() == name) {
+      cout << "This item already exist, please choose another name\n";
+      return true;
+    }
+  }
+  return false;
+}
+
+bool Manager::IsItemCodeRepeated(vector<Item>& item, string code) {
+  for(int n = item.size() - 1; n >= 0; n--) {
+    if(item[n].GetProductCode() == code) {
+      cout << "This code is already taken, please choose another one\n";
+      return true;
+    }
+  }
+  return false;
+}
+
+bool Manager::IsCategoryRepeated(FullMenu& menu, string name) {
+  Iterator<Category>* it = menu.createIterator();
+  for(it->first(); !it->isDone(); it->next()) {
+    if(it->currentItem().GetName() == name) {
+      cout << "This category already exists, please choose another name\n";
+      return true;
+    }
+  }
+  return false;
 }
 
 void Manager::DeleteItemFromStorage(vector<Item>& item) {

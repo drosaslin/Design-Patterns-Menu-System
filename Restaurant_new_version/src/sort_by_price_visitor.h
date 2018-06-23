@@ -21,42 +21,43 @@ public:
   }
   void visit(FullMenu *fm)
   {
-    Iterator<FullMenu *> *it = fm->createIterator();
+    Iterator<Category> *it = fm->createIterator();
     for (it->first(); !it->isDone(); it->next())
     {
-      it->currentItem()->accept(*this);
+      it->currentItem().accept(*this);
     }
   }
-  void visit(Category *c)
-  {
-    _temp.clear();
-    for (int i=0;i<c->GetSize();i++)
-    {
-      _maxPrice = 0;
-      for (int j=0;j<c->GetSize();j++)
-      {
-        flag=false;
-        for (int k = 0; k<_temp.size();k++)
-        {
-          if (j==_temp[k])
-          {
-            flag=true;
-            break;
-          }
-        }
-        if (c->GetItem(j).GetPrice()>_maxPrice && !flag)
-        {
-          _maxPrice=c->GetItem(j)->GetPrice()
-          _index=j;
-        }
-      }
-      _temp.push_back(_index);
-    }
-    for (int k = 0; k<_temp.size();k++)
-    {
-      cout<<c->GetItem(_temp[k])->GetName()<<"\t"<<c->GetItem(_temp[k])->GetPrice()<<endl;
-    }
-  }
+
+  // void visit(Category *c)
+  // {
+  //   _temp.clear();
+  //   for (int i=0;i<c->GetSize();i++)
+  //   {
+  //     _maxPrice = 0;
+  //     for (int j=0;j<c->GetSize();j++)
+  //     {
+  //       flag=false;
+  //       for (int k = 0; k<_temp.size();k++)
+  //       {
+  //         if (j==_temp[k])
+  //         {
+  //           flag=true;
+  //           break;
+  //         }
+  //       }
+  //       if (c->GetItem(j).GetPrice()>_maxPrice && !flag)
+  //       {
+  //         _maxPrice=c->GetItem(j)->GetPrice()
+  //         _index=j;
+  //       }
+  //     }
+  //     _temp.push_back(_index);
+  //   }
+  //   for (int k = 0; k<_temp.size();k++)
+  //   {
+  //     cout<<c->GetItem(_temp[k])->GetName()<<"\t"<<c->GetItem(_temp[k])->GetPrice()<<endl;
+  //   }
+  // }
 
 private:
   int _index;

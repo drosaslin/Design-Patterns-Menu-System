@@ -29,32 +29,32 @@ public:
     _vIngredient.push_back(Ingredient("Cheese",  0.2, 0.13, 0.16, 0.24, true));
     _vIngredient.push_back(Ingredient("Mushroom", 0.20, 0.13, 0.16, 0.24, true));
     _vItem.push_back(Item("Hamburger", "delicious hamburger", "H01", 10));
-  _vItem[0].AddIngredient(&_vIngredient[0]);
-  _vItem[0].AddIngredient(&_vIngredient[1]);
-  _vItem[0].AddIngredient(&_vIngredient[3]);
-  _vItem.push_back(Item("Cheeseburger", "delicious cheeseburger", "H02",10));
-  _vItem[0].AddIngredient(&_vIngredient[0]);
-  _vItem[0].AddIngredient(&_vIngredient[6]);
-  _vItem[0].AddIngredient(&_vIngredient[1]);
-  _vItem[0].AddIngredient(&_vIngredient[3]);
-  _vItem.push_back(Item("Mushroom burger", "delicious shroomburger", "H03", 10));
-  _vItem[0].AddIngredient(&_vIngredient[0]);
-  _vItem[0].AddIngredient(&_vIngredient[6]);
-  _vItem[0].AddIngredient(&_vIngredient[1]);
-  _vItem[0].AddIngredient(&_vIngredient[7]);
-  _vItem[0].AddIngredient(&_vIngredient[3]);
-  _vItem.push_back(Item("Carbonara", "delicious carbonara", "P01", 10));
-  _vItem[1].AddIngredient(&_vIngredient[0]);
-  _vItem[1].AddIngredient(&_vIngredient[1]);
-  _vItem[1].AddIngredient(&_vIngredient[2]);
-  _vItem[1].AddIngredient(&_vIngredient[6]);
-  _vItem.push_back(Item("Spaghetti and Mushrooms", "delicious carbonara", "P02", 10));
-  _vItem[1].AddIngredient(&_vIngredient[0]);
-  _vItem[1].AddIngredient(&_vIngredient[1]);
-  _vItem[1].AddIngredient(&_vIngredient[2]);
-  _vItem[1].AddIngredient(&_vIngredient[7]);
-  _vItem.push_back(Item("Brownie", "delicious brownie", "D01", 10));
-  _vItem.push_back(Item("Cheese Cake", "delicious cheese cake", "D02", 10));
+    _vItem[0].AddIngredient(&_vIngredient[0]);
+    _vItem[0].AddIngredient(&_vIngredient[1]);
+    _vItem[0].AddIngredient(&_vIngredient[3]);
+    _vItem.push_back(Item("Cheeseburger", "delicious cheeseburger", "H02",10));
+    _vItem[0].AddIngredient(&_vIngredient[0]);
+    _vItem[0].AddIngredient(&_vIngredient[6]);
+    _vItem[0].AddIngredient(&_vIngredient[1]);
+    _vItem[0].AddIngredient(&_vIngredient[3]);
+    _vItem.push_back(Item("Mushroom burger", "delicious shroomburger", "H03", 10));
+    _vItem[0].AddIngredient(&_vIngredient[0]);
+    _vItem[0].AddIngredient(&_vIngredient[6]);
+    _vItem[0].AddIngredient(&_vIngredient[1]);
+    _vItem[0].AddIngredient(&_vIngredient[7]);
+    _vItem[0].AddIngredient(&_vIngredient[3]);
+    _vItem.push_back(Item("Carbonara", "delicious carbonara", "P01", 10));
+    _vItem[1].AddIngredient(&_vIngredient[0]);
+    _vItem[1].AddIngredient(&_vIngredient[1]);
+    _vItem[1].AddIngredient(&_vIngredient[2]);
+    _vItem[1].AddIngredient(&_vIngredient[6]);
+    _vItem.push_back(Item("Spaghetti and Mushrooms", "delicious carbonara", "P02", 10));
+    _vItem[1].AddIngredient(&_vIngredient[0]);
+    _vItem[1].AddIngredient(&_vIngredient[1]);
+    _vItem[1].AddIngredient(&_vIngredient[2]);
+    _vItem[1].AddIngredient(&_vIngredient[7]);
+    _vItem.push_back(Item("Brownie", "delicious brownie", "D01", 10));
+    _vItem.push_back(Item("Cheese Cake", "delicious cheese cake", "D02", 10));
     _vCategory.push_back(Category("Hamburgers", "delicious hamburgers"));
     _vCategory.push_back(Category("Pasta", "delicious pasta"));
     _vCategory.push_back(Category("Desserts", "delicious desserts"));
@@ -71,7 +71,7 @@ public:
   }
 
   void ManagerOperations() {
-    regex com("[1-7]");
+    regex com("[1-6]");
     string command;
     do {
       ShowManagerMenu();
@@ -82,7 +82,7 @@ public:
         if (command == "1")
         {
           system("clear");
-          fullMenu.ShowMenu();
+          manager.MenuOptions(fullMenu);
         }
         else if (command=="2")
           manager.AddCategory(fullMenu);
@@ -92,11 +92,11 @@ public:
           manager.ModifyCategory(fullMenu, _vItem);
         else if (command=="5")
           manager.ManageStorage(_vItem, _vIngredient);
-        else if (command=="7")
+        else if (command=="6")
           break;
       }
       else
-        cout << "Input Error. Please input 1 ~ 7:" << endl;
+        cout << "Input Error. Please input 1 ~ 6:" << endl;
     }while(1);
   }
 
@@ -136,8 +136,7 @@ public:
         <<"\t+     3. Delete Category               +"<<endl
         <<"\t+     4. Modify Categories             +"<<endl
         <<"\t+     5. Manage Storage                +"<<endl
-        <<"\t+     6. Delete Item                   +"<<endl
-        <<"\t+     7. Go back                       +"<<endl
+        <<"\t+     6. Go back                       +"<<endl
         <<"\t+                                      +"<<endl
         <<"\t++++++++++++++++++++++++++++++++++++++++"<<endl;
   }

@@ -20,7 +20,6 @@ public:
     bool isFound = false;
     do
     {
-      isFound == false;
       cout << "Please input the code of the item to order (input x when finished): ";
       cin>>itemCode;
       //cin.ignore();
@@ -43,6 +42,8 @@ public:
       }
       if (isFound == false)
         cout << "That item doesn't exist." << endl;
+      else
+        isFound = false;
 
     }while (1);
 

@@ -4,7 +4,7 @@
 #include "menu.h"
 #include "item.h"
 #include "visitor.h"
-// #include "sort_by_price_visitor.h"
+//#include "sort_by_price_visitor.h"
 // #include "sort_by_calorie_visitor.h"
 #include <string>
 #include <vector>
@@ -64,7 +64,7 @@ public:
   void ShowMenu(){
     Iterator<Item>* it = createIterator();
     for(it->first(); !it->isDone(); it->next()) {
-      std::cout << it->currentItem().GetProductCode() << " " << it->currentItem().GetName() << " " << it->currentItem().GetDescription() << " " << fixed << setprecision(2) << it->currentItem().GetPrice() << std::endl;
+      std::cout << it->currentItem().GetProductCode() << " " << it->currentItem().GetName() << "     " << it->currentItem().GetDescription() << "    " << fixed << setprecision(2) << it->currentItem().GetPrice() << std::endl;
     }
   }
 

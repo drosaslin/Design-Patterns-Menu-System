@@ -59,16 +59,6 @@ public:
     }
   }
 
-  Item* GetItem(string name)
-  {
-    //Iterator<Ingredient *> *it = createIterator();
-    // for (it->first();!it->isDone();it->next()) {
-    //   if(it->currentItem()->GetName()==name) return it->currentItem();
-    // }
-    //throw std::invalid_argument("Not Found");
-    return nullptr;
-  }
-
   void ShowMenu(){
     Iterator<Category>* it = createIterator();
     std::cout << GetName() << std::endl;
@@ -76,11 +66,6 @@ public:
       std::cout << std::endl << it->currentItem().GetName() << std::endl;
       it->currentItem().ShowMenu();
     }
-    // for(int n = 0; n < _vCategory.size(); n++){
-    //   std::cout << _vCategory[n].GetName() << std::endl;
-    //   _vCategory[n].ShowMenu();
-    //   std::cout << std::endl;
-    // }
   }
 
   Category& GetCategory(int index) {

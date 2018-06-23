@@ -80,7 +80,10 @@ public:
       if (regex_match(command,com))
       {
         if (command == "1")
+        {
+          system("clear");
           fullMenu.ShowMenu();
+        }
         else if (command=="2")
           manager.AddCategory(fullMenu);
         else if (command=="3")
@@ -112,7 +115,9 @@ public:
        if (regex_match(command,com))
        {
          if (command == "1")
-          fullMenu.ShowMenu();
+         {
+           fullMenu.ShowMenu();
+         }
          else if (command=="2")
          {
            fullMenu.ShowMenu();
