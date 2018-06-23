@@ -5,18 +5,24 @@
 #include "product.h"
 using namespace std;
 
-class Ingredient : public Product
+class Ingredient
 {
 public:
   Ingredient()
   {
   }
 
-  Ingredient(string name, string description, double perProtein, double perFat, double perCarbohydrates, double weight, bool flag)
-  :Product(name, description), _perProtein(perProtein), _perFat(perFat), _perCarbohydrates(perCarbohydrates), _weight(weight), _isVegetarian(flag)
+  Ingredient(string name, double perProtein, double perFat, double perCarbohydrates, double weight, bool flag)
+  :_name(name), _perProtein(perProtein), _perFat(perFat), _perCarbohydrates(perCarbohydrates), _weight(weight), _isVegetarian(flag)
   {
 
   }
+
+  string GetName()
+  {
+      return _name;
+  }
+
   double GetProtein()
   {
     return _perProtein * _weight;

@@ -7,7 +7,7 @@ using namespace std;
 Manager::Manager():_name("Manager"), _number("1"){
 }
 
-Manager::Manager(string name,string number):_name(name),_number(number)
+Manager::Manager(string name = "Manager",string number = "1"):_name(name),_number(number)
 {
 }
 

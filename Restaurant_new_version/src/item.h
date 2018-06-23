@@ -3,7 +3,6 @@
 #include <iostream>
 #include <string>
 #include <vector>
-#include "Ingredient.h"
 #include "ingredient.h"
 #include "iterator.h"
 using namespace std;
@@ -50,7 +49,7 @@ public:
 
   }
   // Item()
-  // :Ingredient(name, description), _price(price), _perProtein(num1), _perFat(num2), _perCarbonhydratesr(num3), _weight(w)
+  // :Ingredient(name), _price(price), _perProtein(num1), _perFat(num2), _perCarbonhydratesr(num3), _weight(w)
   // {
   //
   // }
