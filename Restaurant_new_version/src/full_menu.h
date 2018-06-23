@@ -7,6 +7,8 @@
 #include <string>
 #include <vector>
 
+using namespace std;
+
 class FullMenu : public Menu{
 public:
   class FullMenuIterator : public Iterator<Category>
@@ -97,8 +99,14 @@ public:
     return new FullMenuIterator(this);
   }
 
+  void accept(Visitor &v)
+  {
+    v.visit(this);
+  }
+
 private:
   std::vector<Category> _vCategory;
+  std::vector<Menu *> _vMenu;
 };
 
 #endif

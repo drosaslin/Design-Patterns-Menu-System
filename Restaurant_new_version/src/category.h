@@ -6,6 +6,8 @@
 #include <string>
 #include <vector>
 
+using namespace std;
+
 class Category : public Menu{
 public:
   class CategoryIterator : public Iterator<Item>
@@ -42,6 +44,13 @@ public:
     :Menu(name, description)
   {
   }
+
+  //READ!!!!! 不會編譯
+ Iterator<Item>* createIterator()
+  {
+     return new CategoryIterator(this);
+  }
+
 
   void AddItem(Item *item){
     _vItem.push_back(*item);
@@ -105,12 +114,14 @@ public:
     return (int)_vItem.size();
   }
 
-  Iterator<Item>* createIterator() {
-    return new CategoryIterator(this);
+  void accept(Visitor &v)
+  {
+    v.visit(this);
   }
 
 private:
-  std::vector<Item> _vItem;
+  std::vector<Item*> _vItem;
+  std::vector<Menu *> _vMenu;
 };
 
 #endif
