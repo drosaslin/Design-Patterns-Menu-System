@@ -3,6 +3,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <iomanip>
 #include "ingredient.h"
 #include "iterator.h"
 #include "menu.h"
@@ -72,7 +73,7 @@ public:
   {
     _perFat = num;
   }
-  double GetCarbohydrates(double num)
+  double SetCarbohydrates(double num)
   {
     _perCarbonhydrates = num;
   }
@@ -136,12 +137,12 @@ public:
   }
 
   void NotifyDeletion() {
-    cout << "notiying" << _observers[0]->GetName() << endl;
+    //cout << "notiying" << _observers[0]->GetName() << endl;
     for(int n = _observers.size() - 1; n >= 0; n--) {
       _observers[n]->update(GetName());
       _observers.erase(_observers.begin() + n);
     }
-    cout << "notified" << endl;
+    //cout << "notified" << endl;
   }
 
 private:

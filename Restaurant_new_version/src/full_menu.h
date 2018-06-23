@@ -4,6 +4,8 @@
 #include "menu.h"
 #include "category.h"
 #include "iterator.h"
+// #include "sort_by_price_visitor.h"
+// #include "sort_by_calorie_visitor.h"
 #include <string>
 #include <vector>
 
@@ -55,18 +57,15 @@ public:
         _vCategory.erase(_vCategory.begin()+n);
         return;
       }
-      std::cout << "This category doesn't exist" << std::endl;
     }
   }
 
-  Item* GetItem(string name)
-  {
-    //Iterator<Ingredient *> *it = createIterator();
-    // for (it->first();!it->isDone();it->next()) {
-    //   if(it->currentItem()->GetName()==name) return it->currentItem();
-    // }
-    //throw std::invalid_argument("Not Found");
-    return nullptr;
+  void DisplayCategories() {
+    int n;
+    Iterator<Category>* it = createIterator();
+    for(n = 1, it->first(); !it->isDone(); it->next(), n++) {
+      cout << n << ". " << it->currentItem().GetName() << endl;
+    }
   }
 
   void ShowMenu(){
@@ -76,11 +75,6 @@ public:
       std::cout << std::endl << it->currentItem().GetName() << std::endl;
       it->currentItem().ShowMenu();
     }
-    // for(int n = 0; n < _vCategory.size(); n++){
-    //   std::cout << _vCategory[n].GetName() << std::endl;
-    //   _vCategory[n].ShowMenu();
-    //   std::cout << std::endl;
-    // }
   }
 
   Category& GetCategory(int index) {
@@ -96,6 +90,11 @@ public:
   {
     return new FullMenuIterator(this);
   }
+
+  // void accept(Visitor &v)
+  // {
+  //   v.visit(this);
+  // }
 
 private:
   std::vector<Category> _vCategory;

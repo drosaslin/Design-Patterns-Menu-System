@@ -43,17 +43,27 @@ void Manager::AddCategory(FullMenu& menu)
 
 void Manager::AddCategory(FullMenu& menu, Category& newCat)
 {
-  //Category newCat(name, description);
   menu.AddCategory(newCat);
 }
 
 void Manager::DelCategory(FullMenu& menu)
 {
-  string name;
-  cout<<"Please input category name:";
-  cin.ignore();
-  getline(cin, name);
-  menu.DelCategory(name);
+  system("clear");
+  string input;
+  int index;
+  menu.DisplayCategories();
+  do {
+    cout << "Please input the category you want to delete(input 'x' to cancel): ";
+    cin >> input;
+    index = atoi(input.c_str());
+    if(index > 0 && index <= menu.GetSize() || input == "x") break;
+    else cout << "Invalid input, please try again.\n";
+  }while(1);
+  system("clear");
+  if(input != "x") {
+    cout << menu.GetCategory(index - 1).GetName() << " successfully deleted!\n";
+    menu.DelCategory(menu.GetCategory(index - 1).GetName());
+  }
 }
 
 void Manager::ModifyCategory(FullMenu& menu, vector<Item>& item)
@@ -147,19 +157,24 @@ void Manager::CreateItem(vector<Item>& item, vector<Ingredient>& ingredient)
 }
 
 void Manager::DeleteItemFromStorage(vector<Item>& item) {
-  cout << endl;
-  for(int n = 0; n < item.size(); n++)
-    cout << item[n].GetName() << endl;
-  string name;
-  cout << "Enter the item's name: ";
-  getline(cin, name);
-  for(int n = 0; n < item.size(); n++) {
-    if(item[n].GetName() == name) {
-      item[n].NotifyDeletion();
-      item.erase(item.begin() + n);
-      break;
+  system("clear");
+  string input;
+  int index;
+  do{
+    for(int n = 0; n < item.size(); n++)
+      cout << n+1 << ". " << item[n].GetName() << endl;
+    cout << "Enter the item you want to delete(input 'x' to go back): ";
+    cin >> input;
+    index = atoi(input.c_str());
+    if(index > 0 && index <= item.size()) {
+      item[index - 1].NotifyDeletion();
+      system("clear");
+      cout << item[index - 1].GetName() << " successfully deleted!\n";
+      item.erase(item.begin() + index - 1);
     }
-  }
+    if(input == "x") break;
+  }while(1);
+  system("clear");
 }
 
 void Manager::AddIngredientToItem(Item& item, vector<Ingredient>& ingredient)

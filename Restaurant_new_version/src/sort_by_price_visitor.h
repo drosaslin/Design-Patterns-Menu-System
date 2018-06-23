@@ -2,11 +2,14 @@
 #define SORT_BY_PRICE_VISITOR_H
 
 #include <vector>
-#include "visitor.h"
 #include "menu.h"
 #include "full_menu.h"
 #include "category.h"
 #include "iterator.h"
+class Menu;
+class FullMenu;
+class Category;
+
 using namespace std;
 
 class SortByPriceVisitor:public Visitor

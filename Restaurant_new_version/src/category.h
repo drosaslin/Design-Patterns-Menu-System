@@ -3,6 +3,9 @@
 
 #include "menu.h"
 #include "item.h"
+#include "visitor.h"
+// #include "sort_by_price_visitor.h"
+// #include "sort_by_calorie_visitor.h"
 #include <string>
 #include <vector>
 
@@ -51,7 +54,7 @@ public:
   void DelItem(std::string name){
     for(int n = 0; n < _vItem.size(); n++){
       if (_vItem[n].GetName() == name){
-        cout << _vItem[n].GetName() << "deleted\n";
+        //cout << _vItem[n].GetName() << "deleted\n";
         _vItem.erase(_vItem.begin()+n);
         return;
       }
@@ -59,38 +62,14 @@ public:
   }
 
   void ShowMenu(){
-    cout << endl;
     Iterator<Item>* it = createIterator();
     for(it->first(); !it->isDone(); it->next()) {
-      std::cout << it->currentItem().GetProductCode() << " " << it->currentItem().GetName() << " " << it->currentItem().GetDescription() << " " << it->currentItem().GetPrice() << std::endl;
+      std::cout << it->currentItem().GetProductCode() << " " << it->currentItem().GetName() << " " << it->currentItem().GetDescription() << " " << fixed << setprecision(2) << it->currentItem().GetPrice() << std::endl;
     }
   }
 
   void update(string itemName) {
-      cout << _vItem.size() << endl;
       DelItem(itemName);
-      cout << _vItem.size() << endl;
-      // Iterator<Item*>* it = createIterator();
-      // for(it->first(); !it->isDone(); it->next()) {
-      //   std::cout << it->currentItem()->GetName() << " " << it->currentItem()->GetDescription() << " " << it->currentItem()->GetPrice() << std::endl;
-      // }
-      // cout << "updating" << endl;
-      // Iterator<Item*>* it = createIterator();
-      // int n;
-      // for(n = 0, it->first(); !it->isDone(); n++, it->next()) {
-      //   cout << it->currentItem()->GetName() << endl;
-      //   if(it->currentItem()->GetName() == itemName) {
-      //     _vItem.erase(_vItem.begin() + n);
-      //     break;
-      //   }
-      // }
-      // for(int n = _vItem.size(); n >= 0; n--) {
-      //   cout << _vItem[n].GetName() << endl;
-      //   if(_vItem[n].GetName() == itemName) {
-      //     _vItem.erase(_vItem.begin() + n);
-      //     break;
-      //   }
-      // }
   }
 
   Item GetItem(int index) {
@@ -105,6 +84,11 @@ public:
   Iterator<Item>* createIterator() {
     return new CategoryIterator(this);
   }
+
+  // void accept(Visitor &v)
+  // {
+  //   v.visit(this);
+  // }
 
 private:
   std::vector<Item> _vItem;
