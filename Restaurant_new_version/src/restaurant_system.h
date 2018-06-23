@@ -73,7 +73,7 @@ public:
     regex com("[1-7]");
     string command;
     do {
-      ShowManagerMenu();
+      manager.PrintOperations();
       cout<<"Please input command: ";
       cin>>command;
       if (regex_match(command,com))
@@ -98,21 +98,6 @@ public:
       else
         cout << "Input Error. Please input 1 ~ 7:" << endl;
     }while(1);
-  }
-
-  void ShowManagerMenu() {
-    cout<<"\t++++++++++++++++++++++++++++++++++++++++"<<endl
-        <<"\t+                                      +"<<endl
-        <<"\t+     Welcome to the ManagerSystem     +"<<endl
-        <<"\t+     1. Display Menu                  +"<<endl
-        <<"\t+     2. Add Category                  +"<<endl
-        <<"\t+     3. Delete Category               +"<<endl
-        <<"\t+     4. Modify Categories             +"<<endl
-        <<"\t+     5. Manage Storage                +"<<endl
-        <<"\t+     6. Delete Item                   +"<<endl
-        <<"\t+     7. Exit                          +"<<endl
-        <<"\t+                                      +"<<endl
-        <<"\t++++++++++++++++++++++++++++++++++++++++"<<endl;
   }
 
 
