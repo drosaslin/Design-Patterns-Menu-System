@@ -8,12 +8,46 @@
 
 class Category : public Menu{
 public:
+  class CategoryIterator : public Iterator<Menu *>
+  {
+  public:
+    CategoryIterator(Category *it)
+    {
+      _category=it;
+    }
+    void first()
+    {
+      _current=_category->_vMenu.begin();
+    }
+    void next()
+    {
+      ++_current;
+    }
+    bool isDone()const
+    {
+      return (_current == _category->_vMenu.end());
+    }
+    Menu *currentItem()
+    {
+      return *_current;
+    }
+  private:
+    Category *_category;
+    vector<Menu *>::iterator _current;
+  };
   Category(){}
 
   Category(std::string name, std::string description)
     :Menu(name, description)
   {
   }
+
+  //READ!!!!! 不會編譯
+ Iterator<Menu *>*createIterator()
+  {
+     return new CategoryIterator(this);
+  }
+
 
   void AddItem(Item *item){
     _vItem.push_back(item);
@@ -43,19 +77,14 @@ public:
     return (int)_vItem.size();
   }
 
-  //READ!!!!! 不會編譯
-  // Iterator<FullMenu *>*createIterator()
-  // {
-  //   return new CategoryIterator(this);
-  // }
-  //
-  // void accept(Visitor &v)
-  // {
-  //   v.visit(this);
-  // }
+  void accept(Visitor &v)
+  {
+    v.visit(this);
+  }
 
 private:
   std::vector<Item*> _vItem;
+  std::vector<Menu *> _vMenu;
 };
 
 #endif

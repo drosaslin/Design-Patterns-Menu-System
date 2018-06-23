@@ -8,6 +8,33 @@
 
 class FullMenu: public Menu{
 public:
+  class FullMenuIterator : public Iterator<Menu *>
+  {
+  public:
+    FullMenuIterator(FullMenu *it)
+    {
+      _fullMenu=it;
+    }
+    void first()
+    {
+      _current=_fullMenu->_vMenu.begin();
+    }
+    void next()
+    {
+      ++_current;
+    }
+    bool isDone()const
+    {
+      return (_current == _fullMenu->_vMenu.end());
+    }
+    Menu *currentItem()
+    {
+      return *_current;
+    }
+  private:
+    FullMenu *_fullMenu;
+    vector<Menu *>::iterator _current;
+  };
   FullMenu(){}
 
   FullMenu(string name, string description)
@@ -48,18 +75,19 @@ public:
   }
 
   //READ!!!!!:不會編譯
-  // Iterator<Ingredient *>*createIterator()
-  // {
-  //   return new ItemIterator(this);
-  // }
-  //
-  // void accept(Visitor &v)
-  // {
-  //   v.visit(this);
-  // }
+  Iterator<Menu *>*createIterator()
+  {
+    return new FullMenuIterator(this);
+  }
+
+  void accept(Visitor &v)
+  {
+    v.visit(this);
+  }
 
 private:
   std::vector<Category> _vCategory;
+  std::vector<Menu *> _vMenu;
 };
 
 #endif
