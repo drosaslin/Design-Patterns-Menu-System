@@ -47,16 +47,6 @@ public:
     return (int)_vCategory.size();
   }
 
-  Iterator<Ingredient *>*createIterator()
-  {
-    return new ItemIterator(this);
-  }
-
-  void accept(Visitor &v)
-  {
-    v.visit(this);
-  }
-
 private:
   std::vector<Category> _vCategory;
 };

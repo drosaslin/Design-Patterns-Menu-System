@@ -43,16 +43,6 @@ public:
     return (int)_vItem.size();
   }
 
-  Iterator<FullMenu *>*createIterator()
-  {
-    return new CategoryIterator(this);
-  }
-
-  void accept(Visitor &v)
-  {
-    v.visit(this);
-  }
-
 private:
   std::vector<Item*> _vItem;
 };

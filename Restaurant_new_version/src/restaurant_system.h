@@ -137,7 +137,6 @@ public:
         <<"\t+                                      +"<<endl
         <<"\t++++++++++++++++++++++++++++++++++++++++"<<endl;
   }
-<<<<<<< HEAD
 
   void ShowCustomerMenu(){
     cout<<"\t++++++++++++++++++++++++++++++++++++++++"<<endl
@@ -150,11 +149,6 @@ public:
         <<"\t++++++++++++++++++++++++++++++++++++++++"<<endl;
   }
 
-||||||| merged common ancestors
-  
-=======
-
->>>>>>> aa2150c221ca9551fbde0c08e3da0b73bb3adcef
 private:
   vector<Ingredient> _vIngredient;
   vector<Item> _vItem;
