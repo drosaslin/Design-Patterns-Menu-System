@@ -27,6 +27,9 @@ public:
     _description = newDescription;
   }
 
+  virtual void update(std::string itemName){
+  }
+
 private:
   std::string _name;
   std::string _description;

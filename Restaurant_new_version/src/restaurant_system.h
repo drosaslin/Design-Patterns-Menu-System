@@ -57,20 +57,20 @@ public:
     _vCategory.push_back(Category("Hamburgers", "delicious hamburgers"));
     _vCategory.push_back(Category("Pasta", "delicious pasta"));
     _vCategory.push_back(Category("Desserts", "delicious desserts"));
-    _vCategory[0].AddItem(&_vItem[0]);
-    _vCategory[0].AddItem(&_vItem[1]);
-    _vCategory[0].AddItem(&_vItem[2]);
-    _vCategory[1].AddItem(&_vItem[3]);
-    _vCategory[1].AddItem(&_vItem[4]);
-    _vCategory[2].AddItem(&_vItem[5]);
-    _vCategory[2].AddItem(&_vItem[6]);
     for(int n = 0; n < _vCategory.size(); n++) {
-      fullMenu.AddCategory(_vCategory[n]);
+      manager.AddCategory(fullMenu, _vCategory[n]);
     }
+    manager.AddItemToCategory(fullMenu, _vItem, 1, 1);
+    manager.AddItemToCategory(fullMenu, _vItem, 1, 2);
+    manager.AddItemToCategory(fullMenu, _vItem, 1, 3);
+    manager.AddItemToCategory(fullMenu, _vItem, 2, 4);
+    manager.AddItemToCategory(fullMenu, _vItem, 2, 5);
+    manager.AddItemToCategory(fullMenu, _vItem, 3, 6);
+    manager.AddItemToCategory(fullMenu, _vItem, 3, 7);
   }
 
   void ManagerOperations() {
-    regex com("[1-7]");
+    regex com("[1-６]");
     string command;
     do {
       manager.PrintOperations();
@@ -88,15 +88,11 @@ public:
           manager.ModifyCategory(fullMenu, _vItem);
         else if (command=="5")
           manager.ManageStorage(_vItem, _vIngredient);
-        // else if (command=="6")
-        //   DelItem();
-        // else if (command=="6")
-        //   DelItem();
         else if (command=="7")
           break;
       }
       else
-        cout << "Input Error. Please input 1 ~ 7:" << endl;
+        cout << "Input Error. Please input 1 ~ ６:" << endl;
     }while(1);
   }
 
